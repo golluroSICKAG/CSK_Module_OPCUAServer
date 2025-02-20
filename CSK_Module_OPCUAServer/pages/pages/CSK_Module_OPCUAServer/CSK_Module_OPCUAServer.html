@@ -1,0 +1,282 @@
+<layout-row id="RowLayout1" class="myCustomBackground_CSK_Module_OPCUAServer">
+    <layout-column id="ColumnLayout7" class="myCustomFrameNoColor_CSK_Module_OPCUAServer" style="align-items: stretch">
+        <layout-row id="RowLayout5" class="myCustomSpacerVert20_CSK_Module_OPCUAServer">
+        </layout-row>
+        <layout-row id="RowLayout19">
+            <layout-column id="ColumnLayout26" style="align-items: stretch">
+                <layout-row id="RowLayout01" style="align-items: baseline">
+					<davinci-value-display id="VD_Title"
+						class="myCustomLabel_CSK_Module_OPCUAServer" value="OPCUAServer">
+					</davinci-value-display>
+                    <davinci-value-display id="VD_Version">
+                        <crown-edpws-binding property="value" name="CSK_OPCUAServer/OnNewStatusModuleVersion"
+                            update-on-resume>
+                        </crown-edpws-binding>
+                    </davinci-value-display>
+                </layout-row>
+            </layout-column>
+        </layout-row>
+        <stacked-view id="SV_FeatureSupport">
+            <stacked-pane id="SP_Supported" value="true">
+                <stacked-view id="SV_Login">
+                    <stacked-pane id="SP_LoginOK" value="true">
+                        <layout-row id="RowLayout6">
+                            <layout-column id="ColumnLayout1" style="align-items: stretch">
+                                <layout-row id="RowLayout20" class="myCustomMarginFirstRow_CSK_Module_OPCUAServer">
+                                    <layout-column id="ColumnLayout2" style="align-items: stretch">
+                                    </layout-column>
+                                    <layout-column id="ColumnLayout28" class="myCustomBorderLeft_CSK_Module_OPCUAServer"
+                                        style="align-items: stretch">
+                                        <layout-row id="RowLayout46" style="align-items: baseline">
+                                            <layout-column id="ColumnLayout81" style="align-items: stretch">
+                                                <layout-row id="RowLayout24" style="align-items: center">
+                                                    <layout-column id="ColumnLayout57" style="align-items: stretch">
+                                                        <davinci-value-display id="VD_PersistentData"
+                                                            value="Persistent Data">
+                                                        </davinci-value-display>
+                                                    </layout-column>
+                                                    <layout-column id="ColumnLayout73"
+                                                        style="align-items: stretch; flex-grow: 2">
+                                                        <davinci-text-field id="TF_ParameterName" type="text"
+                                                            title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+                                                            <crown-edpws-binding property="value"
+                                                                name="CSK_OPCUAServer/OnNewParameterName"
+                                                                update-on-resume>
+                                                            </crown-edpws-binding>
+                                                            <crown-binding event="change"
+                                                                name="CSK_OPCUAServer/setParameterName"
+                                                                path="param/args/name" auto-commit>
+                                                            </crown-binding>
+                                                            <crown-edpws-binding property="disabled"
+                                                                name="CSK_OPCUAServer/OnPersistentDataModuleAvailable"
+                                                                update-on-resume
+                                                                converter="function(value) {return !value;}">
+                                                            </crown-edpws-binding>
+                                                        </davinci-text-field>
+                                                    </layout-column>
+                                                    <layout-column id="Column_PersistentDatax"
+                                                        style="align-items: stretch">
+                                                        <layout-row id="RowLayout55">
+                                                            <layout-column id="ColumnLayout76"
+                                                                style="align-items: stretch">
+                                                                <layout-row id="RowLayout34"
+                                                                    class="myCustomMarginTop7PX_CSK_Module_OPCUAServer"
+                                                                    style="justify-content: center; align-items: center">
+                                                                    <davinci-button id="B_LoadConfig"
+                                                                        class="myCustomButton_CSK_Module_OPCUAServer"
+                                                                        type="outline" icon-position="append"
+                                                                        title="Load configured parameters from CSK_PersistentData module."
+                                                                        icon="action/history">
+                                                                        <span></span>
+                                                                        <crown-binding event="submit"
+                                                                            name="CSK_OPCUAServer/loadParameters"
+                                                                            auto-commit>
+                                                                        </crown-binding>
+                                                                        <crown-edpws-binding property="disabled"
+                                                                            name="CSK_OPCUAServer/OnPersistentDataModuleAvailable"
+                                                                            update-on-resume
+                                                                            converter="function(value) {return !value;}">
+                                                                        </crown-edpws-binding>
+                                                                    </davinci-button>
+                                                                    <davinci-button id="B_SaveConfig"
+                                                                        class="myCustomButton_CSK_Module_OPCUAServer"
+                                                                        type="outline" icon-position="append"
+                                                                        title="Save current configured parameters of this module within CSK_PersistentData module."
+                                                                        icon="content/save">
+                                                                        <span></span>
+                                                                        <crown-binding event="submit"
+                                                                            name="CSK_OPCUAServer/sendParameters"
+                                                                            auto-commit>
+                                                                        </crown-binding>
+                                                                        <crown-edpws-binding property="disabled"
+                                                                            name="CSK_OPCUAServer/OnPersistentDataModuleAvailable"
+                                                                            update-on-resume
+                                                                            converter="function(value) {return !value;}">
+                                                                        </crown-edpws-binding>
+                                                                    </davinci-button>
+                                                                </layout-row>
+                                                            </layout-column>
+                                                        </layout-row>
+                                                    </layout-column>
+                                                </layout-row>
+                                                <layout-row id="RowLayout57" style="align-items: center">
+                                                    <layout-column id="ColumnLayout511" style="align-items: stretch">
+                                                        <davinci-collapse id="Collapse_PersistentData"
+                                                            class="myCustomPersistentDataMargin_CSK_Module_OPCUAServer"
+                                                            collapsed-title="..." expanded-title="...">
+                                                            <layout-row id="RowLayout45"
+                                                                class="myCustomPersistentDataMarginBack_CSK_Module_OPCUAServer"
+                                                                style="align-items: center">
+                                                                <layout-column id="ColumnLayout6x"
+                                                                    style="align-items: stretch">
+                                                                </layout-column>
+                                                                <layout-column id="ColumnLayout72"
+                                                                    style="align-items: stretch; flex-grow: 2">
+                                                                    <layout-row id="RowLayout13">
+                                                                        <layout-column id="ColumnLayout11"
+                                                                            style="align-items: stretch">
+                                                                            <layout-row id="RowLayout2x"
+                                                                                style="align-items: center">
+                                                                                <davinci-value-display
+                                                                                    id="VD_LoadConfig"
+                                                                                    value="Load on reboot:"
+                                                                                    title="Load configured parameters from CSK_PersistentData on app start.">
+                                                                                </davinci-value-display>
+                                                                                <davinci-checkbox id="CB_LoadConfig"
+                                                                                    title="Load configured parameters from CSK_PersistentData on app start.">
+                                                                                    <span></span>
+                                                                                    <crown-edpws-binding
+                                                                                        property="checked"
+                                                                                        name="CSK_OPCUAServer/OnNewStatusLoadParameterOnReboot"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-edpws-binding
+                                                                                        property="disabled"
+                                                                                        name="CSK_OPCUAServer/OnPersistentDataModuleAvailable"
+                                                                                        update-on-resume
+                                                                                        converter="function(value) {return !value;}">
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_OPCUAServer/setLoadOnReboot"
+                                                                                        path="param/args/status"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-checkbox>
+                                                                            </layout-row>
+                                                                        </layout-column>
+                                                                        <layout-column id="ColumnLayout77"
+                                                                            style="align-items: stretch">
+                                                                            <layout-row id="RowLayout56"
+                                                                                style="align-items: center; justify-content: space-between">
+                                                                                <davinci-value-display
+                                                                                    id="VD_FLowConfigPrio"
+                                                                                    value="Flow config priority:"
+                                                                                    title="FlowConfig priority for FlowConfig relevant configurations.">
+                                                                                </davinci-value-display>
+                                                                                <davinci-checkbox id="CB_FlowConfigPrio"
+                                                                                    title="FlowConfig priority for FlowConfig relevant configurations.">
+                                                                                    <span></span>
+                                                                                    <crown-edpws-binding
+                                                                                        property="checked"
+                                                                                        name="CSK_OPCUAServer/OnNewStatusFlowConfigPriority"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_OPCUAServer/setFlowConfigPriority"
+                                                                                        path="param/args/status"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-checkbox>
+                                                                            </layout-row>
+                                                                        </layout-column>
+                                                                    </layout-row>
+                                                                </layout-column>
+                                                                <layout-column id="ColumnLayout79"
+                                                                    style="align-items: stretch">
+                                                                </layout-column>
+                                                            </layout-row>
+                                                        </davinci-collapse>
+                                                    </layout-column>
+                                                </layout-row>
+                                            </layout-column>
+                                        </layout-row>
+                                    </layout-column>
+                                </layout-row>
+                                <layout-row id="RowLayout60" class="myCustomSpacerVert10_CSK_Module_OPCUAServer"
+                                    style="flex-grow: 0; flex-shrink: 0">
+                                </layout-row>
+                                <layout-row id="RowLayout47" class="myCustomBorderBottom_CSK_Module_OPCUAServer"
+                                    style="flex-grow: 0; flex-shrink: 0">
+                                </layout-row>
+                                <layout-row id="RowLayout61" class="myCustomSpacerVert20_CSK_Module_OPCUAServer"
+                                    style="flex-grow: 0; flex-shrink: 0">
+                                </layout-row>
+                                <layout-row id="RowLayout2">
+                                    <layout-column id="ColumnLayout3" style="align-items: stretch">
+                                        <davinci-value-display id="VD_Content" label="Add your content...">
+                                        </davinci-value-display>
+                                    </layout-column>
+                                    <layout-column id="ColumnLayout4" class="myCustomBorderLeft_CSK_Module_OPCUAServer"
+                                        style="align-items: stretch">
+                                        <layout-row id="RowLayout3">
+                                            <layout-column id="ColumnLayout5"
+                                                class="myCustomFrame_CSK_Module_OPCUAServer"
+                                                style="align-items: stretch">
+                                                <davinci-value-display id="VD_Configuration"
+                                                    class="myCustomFrameLabel_CSK_Module_OPCUAServer"
+                                                    style="align-self: flex-start">
+                                                </davinci-value-display>
+                                                <curie-callout id="DC_FlowConfigInfo" type="info"
+                                                    value="FlowConfig priority active.">
+                                                    <crown-edpws-binding property="hidden"
+                                                        name="CSK_OPCUAServer/OnNewStatusFlowConfigPriority"
+                                                        update-on-resume converter="function(value) {return !value;}">
+                                                    </crown-edpws-binding>
+                                                </curie-callout>
+                                                <layout-row id="RowLayout4" style="align-items: center">
+                                                    <layout-column id="ColumnLayout6" style="align-items: stretch">
+												<davinci-value-display id="VD_RegisteredEvent"
+													value="Registered event"
+													title="Source to receive data to process.">
+												</davinci-value-display>
+                                                    </layout-column>
+                                                    <layout-column id="ColumnLayout8" style="align-items: stretch">
+												<davinci-text-field id="TF_RegisteredEvent" type="text"
+													title="Source to receive data to process.">
+												<crown-edpws-binding property="value"
+													name="CSK_OPCUAServer/OnNewStatusEventToRegister" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_OPCUAServer/setEventToRegister"
+													path="param/args/event" auto-commit>
+												</crown-binding>
+												<crown-edpws-binding property="disabled"
+													name="CSK_OPCUAServer/OnNewStatusFlowConfigPriority"
+													update-on-resume>
+												</crown-edpws-binding>
+												</davinci-text-field>
+                                                    </layout-column>
+                                                </layout-row>
+                                            </layout-column>
+                                        </layout-row>
+                                    </layout-column>
+                                </layout-row>
+                            </layout-column>
+                        </layout-row>
+                    </stacked-pane>
+                    <stacked-pane id="SP_LoginNotOK" value="false">
+                        <davinci-callout id="Callout1" type="info">
+                            <span>
+								Please log in via CSK_UserManagement module (at least via user level "Operator")
+							</span>
+                        </davinci-callout>
+                    </stacked-pane>
+                    <crown-edpws-binding property="value" name="CSK_OPCUAServer/OnUserLevelOperatorActive"
+                        update-on-resume converter="function(value) {return value.toString();}">
+                    </crown-edpws-binding>
+                </stacked-view>
+            </stacked-pane>
+            <stacked-pane id="SP_NoSupport" value="false">
+                <layout-row id="RowLayout17">
+                    <layout-column id="ColumnLayout25">
+                        <davinci-callout id="Callout31" type="warning" style="width: 99%">
+                            <span>Module is not supported on this device...</span>
+                        </davinci-callout>
+                        <img id="UI_sample" src="assets/CSK_Module_OPCUAServer/UI_sample.png"
+							alt="UI sample">
+                    </layout-column>
+                </layout-row>
+            </stacked-pane>
+            <crown-edpws-binding property="value" name="CSK_OPCUAServer/OnNewStatusModuleIsActive" update-on-resume
+                converter="function(value) {return value.toString();}">
+            </crown-edpws-binding>
+        </stacked-view>
+        <stacked-view id="SV_PageCalled">
+            <crown-binding property="value" name="CSK_OPCUAServer/pageCalled" path="result/data/empty" auto-update="0"
+                update-on-resume>
+            </crown-binding>
+            <crown-edpws-binding property="value" name="CSK_OPCUAServer/OnNewStatusCSKStyle" update-on-resume
+                converter="changeStyle">
+            </crown-edpws-binding>
+        </stacked-view>
+    </layout-column>
+</layout-row>
