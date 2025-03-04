@@ -119,7 +119,8 @@ local function addAllNodes(node, reference, nameSpace)
     end
 
     if value.class == 'OBJECT' then
-      newNode:setTypeDefinition('FOLDER_TYPE')
+      --newNode:setTypeDefinition('FOLDER_TYPE')
+      newNode:setTypeDefinition(value.nodeType)
     elseif value.class == 'VARIABLE' then
       newNode:setDataType(value.dataType)
       newNode:setAccessLevel(value.accessLevel)
@@ -164,7 +165,7 @@ local function startServer()
   opcuaServer_Model.server:setApplicationURI(opcuaServer_Model.parameters.applicationURI)
 
   --TODO
-  --  opcuaServer_Model.baseEventTypeNode = OPCUA.Server.Namespace.getNodeFromStandardNamespace(opcuaServer_Model.namespace, 'NUMERIC', 2041 ) -- 2041: BaseEventType
+  --opcuaServer_Model.baseEventTypeNode = OPCUA.Server.Namespace.getNodeFromStandardNamespace(opcuaServer_Model.namespace, 'NUMERIC', 2041 ) -- 2041: BaseEventType
 
   for namespaceKey, _ in pairs(opcuaServer_Model.parameters.namespaces.names) do
     local namespace = OPCUA.Server.Namespace.create() -- First namespace
