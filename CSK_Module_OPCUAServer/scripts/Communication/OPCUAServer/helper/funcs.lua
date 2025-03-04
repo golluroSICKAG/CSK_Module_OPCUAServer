@@ -17,6 +17,74 @@ funcs.json = require('Communication/OPCUAServer/helper/Json')
 --**********************Start Function Scope *******************************
 --**************************************************************************
 
+local nodeList = {}
+
+local function addSubNodes(nodes, reference, currentSelection)
+  local orderedTable = {}
+
+  for n in pairs(nodes) do
+    table.insert(orderedTable, n)
+  end
+  table.sort(orderedTable)
+
+  for _, value in ipairs(orderedTable) do
+    local isSelected = false
+    if currentSelection == value then
+      isSelected = true
+    end
+    table.insert(nodeList, {DTC_Node = reference .. ' // ' .. value, selected = isSelected})
+    if nodes[value].nodes then
+      addSubNodes(nodes[value].nodes, reference .. ' // ' .. nodes[value].id, currentSelection)
+    end
+  end
+end
+
+--- Create JSON list for dynamic table
+---@param contentA string Lost of nodes
+---@param namespaceIndex string Selected namespace index
+---@param selectedParam string Currently selected parameter
+---@return string jsonstring JSON string
+local function createCustomJsonList(contentA, namespaceIndex, selectedParam)
+  nodeList = {}
+  local isSelected = false
+  local entries = false
+
+  local rootNodeData
+  for rootKey, __ in pairs(contentA.nodes[namespaceIndex]) do
+    rootNodeData = contentA.nodes[namespaceIndex][rootKey]
+    break
+  end
+
+  if rootNodeData then
+    if rootNodeData.id then
+      for key, value in pairs(rootNodeData.nodes) do
+        entries = true
+        break
+      end
+      if rootNodeData.nodes == nil or entries == false then
+        if selectedParam == rootNodeData.id then
+          isSelected = true
+        end
+        nodeList = {{DTC_Node = rootNodeData.id, selected = isSelected},}
+      else
+        if selectedParam == rootNodeData.id then
+          isSelected = true
+        end
+        table.insert(nodeList, {DTC_Node = rootNodeData.id, selected = isSelected})
+        addSubNodes(rootNodeData.nodes, rootNodeData.id, selectedParam)
+      end
+    else
+      nodeList = {{DTC_NodeID = '-', DTC_Node = '-'},}
+    end
+  else
+    nodeList = {{DTC_NodeID = '-', DTC_Node = '-'},}
+  end
+
+  local jsonstring = funcs.json.encode(nodeList)
+  return jsonstring
+end
+funcs.createCustomJsonList = createCustomJsonList
+
 --- Function to create a list with numbers
 ---@param size int Size of the list
 ---@return string list List of numbers
@@ -116,14 +184,28 @@ funcs.createContentList = createContentList
 ---@return string sortedTable Sorted entries as JSON string
 local function createJsonList(data)
   local sortedTable = {}
-  for key, _ in pairs(data) do
-    table.insert(sortedTable, key)
+  for key, value in pairs(data) do
+    table.insert(sortedTable, value)
   end
   table.sort(sortedTable)
   return funcs.json.encode(sortedTable)
 end
 funcs.createJsonList = createJsonList
 
+--[[
+--- Function to get content list as JSON string
+---@param data string[] Table with data entries
+---@return string sortedTable Sorted entries as JSON string
+local function createJsonListOnKeys(data)
+  local sortedTable = {}
+  for key, _ in pairs(data) do
+    table.insert(sortedTable, vakeylue)
+  end
+  table.sort(sortedTable)
+  return funcs.json.encode(sortedTable)
+end
+funcs.createJsonListOnKeys = createJsonListOnKeys
+]]
 --- Function to create a list from table
 ---@param content string[] Table with data entries
 ---@return string list String list

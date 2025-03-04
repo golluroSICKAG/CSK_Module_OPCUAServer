@@ -34,7 +34,7 @@ _G.availableAPIs = require('Communication/OPCUAServer/helper/checkAPIs') -- can 
 _G.logger = Log.SharedLogger.create('ModuleLogger')
 _G.logHandle = Log.Handler.create()
 _G.logHandle:attachToSharedLogger('ModuleLogger')
-_G.logHandle:setConsoleSinkEnabled(false) --> Set to TRUE if CSK_Logger module is not used
+_G.logHandle:setConsoleSinkEnabled(true) --> Set to TRUE if CSK_Logger module is not used
 _G.logHandle:setLevel("ALL")
 _G.logHandle:applyConfig()
 -----------------------------------------------------------
@@ -70,7 +70,37 @@ local function main()
 
   -- _G.opcuaServer_Model.doSomething() -- if you want to start a function
   -- ...
+  --_G.opcuaServer_Model.startServer()
   CSK_OPCUAServer.pageCalled() -- Update UI
+
+  CSK_OPCUAServer.addNamespaceViaUI()
+
+  --CSK_OPCUAServer.setNodeType('VARIABLE')
+  CSK_OPCUAServer.setNodeClass('OBJECT')
+  --CSK_OPCUAServer.setNodeReference('RootID')
+  CSK_OPCUAServer.addNodeViaUI()
+
+  CSK_OPCUAServer.setNodeClass('OBJECT')
+  CSK_OPCUAServer.setNodeReference('RootID')
+  CSK_OPCUAServer.setNodeID("ObjectNodeNo1")
+  CSK_OPCUAServer.addNodeViaUI()
+
+  --CSK_OPCUAServer.setNodeType('VARIABLE')
+  CSK_OPCUAServer.setNodeClass('VARIABLE')
+  CSK_OPCUAServer.setNodeReference('ObjectNodeNo1')
+  CSK_OPCUAServer.setNodeID("NodeIDNo2")
+  CSK_OPCUAServer.setEventToRegister('CSK_Commands.OnNewEvent1')
+  CSK_OPCUAServer.addNodeViaUI()
+
+  CSK_OPCUAServer.setNodeClass('VARIABLE')
+  CSK_OPCUAServer.setNodeReference('RootID')
+  CSK_OPCUAServer.setNodeID("NodeIDNo1")
+  CSK_OPCUAServer.setEventToRegister('CSK_Commands.OnNewEvent2')
+  CSK_OPCUAServer.addNodeViaUI()
+  
+  print("Done")
+
+  --CSK_OPCUAServer.setServerActive(true)
 
 end
 Script.register("Engine.OnStarted", main)

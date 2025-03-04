@@ -4,6 +4,6 @@ document.addEventListener('sopasjs-ready', () => {
   page_1.classList.add('fa-lightbulb-o');
 
   setTimeout(() => {
-    document.title = 'CSK_Module_ModuleName'
+    document.title = 'CSK_Module_OPCUAServer'
   }, 500);
 })

@@ -5,9 +5,9 @@
         <layout-row id="RowLayout19">
             <layout-column id="ColumnLayout26" style="align-items: stretch">
                 <layout-row id="RowLayout01" style="align-items: baseline">
-					<davinci-value-display id="VD_Title"
-						class="myCustomLabel_CSK_Module_OPCUAServer" value="OPCUAServer">
-					</davinci-value-display>
+                    <davinci-value-display id="VD_Title" class="myCustomLabel_CSK_Module_OPCUAServer"
+                        value="OPC UA Server">
+                    </davinci-value-display>
                     <davinci-value-display id="VD_Version">
                         <crown-edpws-binding property="value" name="CSK_OPCUAServer/OnNewStatusModuleVersion"
                             update-on-resume>
@@ -193,51 +193,743 @@
                                 </layout-row>
                                 <layout-row id="RowLayout2">
                                     <layout-column id="ColumnLayout3" style="align-items: stretch">
-                                        <davinci-value-display id="VD_Content" label="Add your content...">
-                                        </davinci-value-display>
+                                        <layout-row id="RowLayout25"
+                                            style="align-items: center; justify-content: flex-end">
+                                            <davinci-status-indicator id="SI_ServerIsActvie"
+                                                title="Status if server is currently active.">
+                                                <span></span>
+                                                <crown-edpws-binding property="status"
+                                                    name="CSK_OPCUAServer/OnNewStatusServerIsCurrentlyActive"
+                                                    update-on-resume>
+                                                </crown-edpws-binding>
+                                            </davinci-status-indicator>
+                                            <davinci-value-display id="VD_Active" value="Active:">
+                                            </davinci-value-display>
+                                            <davinci-toggle-switch id="TS_ServerActive">
+                                                <crown-binding event="change" name="CSK_OPCUAServer/setServerActive"
+                                                    path="param/args/status" auto-commit>
+                                                </crown-binding>
+                                                <crown-edpws-binding property="checked"
+                                                    name="CSK_OPCUAServer/OnNewStatusServerActive" update-on-resume>
+                                                </crown-edpws-binding>
+                                            </davinci-toggle-switch>
+                                        </layout-row>
+                                        <curie-table id="DT_Nodes" selectable>
+                                            <curie-table-column id="DTC_Node" header="Node">
+                                            </curie-table-column>
+                                            <crown-edpws-binding property="data"
+                                                name="CSK_OPCUAServer/OnNewStatusAllNodesList" update-on-resume>
+                                            </crown-edpws-binding>
+                                            <crown-binding event="row-selected" name="CSK_OPCUAServer/selectNodeViaUI"
+                                                path="param/args/selection" auto-commit>
+                                            </crown-binding>
+                                        </curie-table>
                                     </layout-column>
                                     <layout-column id="ColumnLayout4" class="myCustomBorderLeft_CSK_Module_OPCUAServer"
                                         style="align-items: stretch">
-                                        <layout-row id="RowLayout3">
-                                            <layout-column id="ColumnLayout5"
-                                                class="myCustomFrame_CSK_Module_OPCUAServer"
-                                                style="align-items: stretch">
-                                                <davinci-value-display id="VD_Configuration"
-                                                    class="myCustomFrameLabel_CSK_Module_OPCUAServer"
-                                                    style="align-self: flex-start">
-                                                </davinci-value-display>
-                                                <curie-callout id="DC_FlowConfigInfo" type="info"
-                                                    value="FlowConfig priority active.">
-                                                    <crown-edpws-binding property="hidden"
-                                                        name="CSK_OPCUAServer/OnNewStatusFlowConfigPriority"
-                                                        update-on-resume converter="function(value) {return !value;}">
-                                                    </crown-edpws-binding>
-                                                </curie-callout>
-                                                <layout-row id="RowLayout4" style="align-items: center">
-                                                    <layout-column id="ColumnLayout6" style="align-items: stretch">
+                                        <davinci-tabs id="Tabs_Setup_Nodes" type="modern">
+                                            <davinci-tab id="Tab_Setup" label="Setup">
+                                                <layout-row id="RowLayout7">
+                                                    <layout-column id="ColumnLayout9" style="align-items: stretch">
+                                                        <layout-row id="RowLayout8" style="align-items: center">
+                                                            <layout-column id="ColumnLayout10"
+                                                                style="align-items: stretch">
+                                                                <davinci-value-display id="VD_Interface"
+                                                                    value="Interface / Port:">
+                                                                </davinci-value-display>
+                                                            </layout-column>
+                                                            <layout-column id="ColumnLayout12"
+                                                                style="align-items: stretch">
+                                                                <layout-row id="RowLayout33">
+                                                                    <layout-column id="ColumnLayout47"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-drop-down id="DD_Interfaces">
+                                                                            <crown-edpws-binding property="data"
+                                                                                name="CSK_OPCUAServer/OnNewStatusInterfaceList"
+                                                                                update-on-resume
+                                                                                converter="convertToList">
+                                                                            </crown-edpws-binding>
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_OPCUAServer/OnNewStatusInterface"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                            <crown-binding event="change"
+                                                                                name="CSK_OPCUAServer/setInterface"
+                                                                                path="param/args/interface" auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-drop-down>
+                                                                    </layout-column>
+                                                                    <layout-column id="ColumnLayout48"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-numeric-field id="NF_Port"
+                                                                            type="outline" min="0" max="99999" ticks="1"
+                                                                            group-separator="," decimal-separator="."
+                                                                            format-pattern="0">
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_OPCUAServer/OnNewStatusPort"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                            <crown-binding event="change"
+                                                                                name="CSK_OPCUAServer/setPort"
+                                                                                path="param/args/port" auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-numeric-field>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </layout-column>
+                                                        </layout-row>
+                                                        <layout-row id="RowLayout9" style="align-items: center">
+                                                            <layout-column id="ColumnLayout13"
+                                                                style="align-items: stretch">
+                                                                <davinci-value-display id="VD_ApplicationName"
+                                                                    value="Application name / URI:">
+                                                                </davinci-value-display>
+                                                            </layout-column>
+                                                            <layout-column id="ColumnLayout14"
+                                                                style="align-items: stretch">
+                                                                <layout-row id="RowLayout29">
+                                                                    <layout-column id="ColumnLayout24"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-text-field id="TF_ApplicationName"
+                                                                            type="text">
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_OPCUAServer/OnNewStatusApplicationName"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                            <crown-binding event="change"
+                                                                                name="CSK_OPCUAServer/setApplicationName"
+                                                                                path="param/args/name" auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-text-field>
+                                                                    </layout-column>
+                                                                    <layout-column id="ColumnLayout27"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-text-field id="TF_ApplicationURI"
+                                                                            type="text" placeholder="URI"
+                                                                            title="Optional application URI.">
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_OPCUAServer/OnNewStatusApplicationURI"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                            <crown-binding event="change"
+                                                                                name="CSK_OPCUAServer/setApplicationURI"
+                                                                                path="param/args/uri" auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-text-field>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </layout-column>
+                                                        </layout-row>
+                                                        <layout-row id="RowLayout10">
+                                                            <layout-column id="ColumnLayout15"></layout-column>
+                                                            <layout-column id="ColumnLayout16"></layout-column>
+                                                        </layout-row>
+                                                    </layout-column>
+                                                </layout-row>
+                                            </davinci-tab>
+                                            <davinci-tab id="Tab_Namespace" label="Nodes">
+                                                <layout-row id="RowLayout11">
+                                                    <layout-column id="ColumnLayout17" style="align-items: stretch">
+                                                        <layout-row id="RowLayout12" style="align-items: center">
+                                                            <layout-column id="ColumnLayout18"
+                                                                style="align-items: stretch">
+                                                                <layout-row id="RowLayout31"
+                                                                    style="align-items: center; justify-content: space-between">
+                                                                    <layout-column id="ColumnLayout43"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-value-display id="VD_NamespaceIndex"
+                                                                            value="Namespace Index / URL:">
+                                                                        </davinci-value-display>
+                                                                    </layout-column>
+                                                                    <layout-column id="ColumnLayout44"
+                                                                        style="align-items: flex-end">
+                                                                        <davinci-button id="Button_AddNamespace"
+                                                                            class="myCustomButton_CSK_Module_OPCUAServer"
+                                                                            type="outline" icon-position="append"
+                                                                            title="Add new namespace"
+                                                                            icon="content/add">
+                                                                            <span></span>
+                                                                            <crown-binding event="submit"
+                                                                                name="CSK_OPCUAServer/addNamespaceViaUI"
+                                                                                auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-button>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </layout-column>
+                                                            <layout-column id="ColumnLayout19"
+                                                                style="align-items: stretch">
+                                                                <layout-row id="RowLayout32">
+                                                                    <layout-column id="ColumnLayout45"
+                                                                        style="align-items: stretch">
+                                                                        <davinci-numeric-field id="NF_NamespaceIndex"
+                                                                            type="outline" min="2" max="99999" ticks="1"
+                                                                            group-separator="," decimal-separator="."
+                                                                            format-pattern="0">
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_OPCUAServer/OnNewStatusNamespaceIndex"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                            <crown-binding event="change"
+                                                                                name="CSK_OPCUAServer/setNamespaceIndex"
+                                                                                path="param/args/index" auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-numeric-field>
+                                                                    </layout-column>
+                                                                    <layout-column id="ColumnLayout46">
+                                                                        <davinci-text-field id="TF_NamespaceURL"
+                                                                            type="text" placeholder="URL">
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_OPCUAServer/OnNewStatusNamespaceURL"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                            <crown-binding event="change"
+                                                                                name="CSK_OPCUAServer/setNamespaceURL"
+                                                                                path="param/args/url" auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-text-field>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </layout-column>
+                                                        </layout-row>
+                                                        <layout-row id="RowLayout30" style="align-items: center">
+                                                            <layout-column id="ColumnLayout41"
+                                                                style="align-items: stretch">
+                                                                <davinci-value-display id="VD_Namespace"
+                                                                    value="Selected namespace:">
+                                                                </davinci-value-display>
+                                                            </layout-column>
+                                                            <layout-column id="ColumnLayout42"
+                                                                style="align-items: stretch">
+                                                                <davinci-drop-down id="DD_Namespace">
+                                                                    <crown-edpws-binding property="data"
+                                                                        name="CSK_OPCUAServer/OnNewStatusNamespaceList"
+                                                                        update-on-resume converter="convertToList">
+                                                                    </crown-edpws-binding>
+                                                                    <crown-edpws-binding property="value"
+                                                                        name="CSK_OPCUAServer/OnNewStatusSelectedNamespace"
+                                                                        update-on-resume>
+                                                                    </crown-edpws-binding>
+                                                                </davinci-drop-down>
+                                                            </layout-column>
+                                                        </layout-row>
+                                                        <stacked-view id="SV_NamespaceActive">
+                                                            <stacked-pane id="SP_NamespaceActive" value="true">
+                                                                <layout-row id="RowLayout15">
+                                                                    <layout-column id="ColumnLayout22"
+                                                                        style="align-items: stretch">
+                                                                        <layout-row id="RowLayout23"
+                                                                            style="align-items: center">
+                                                                            <layout-column id="ColumnLayout35"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_NodeClass"
+                                                                                    value="Node class:">
+                                                                                </davinci-value-display>
+                                                                            </layout-column>
+                                                                            <layout-column id="ColumnLayout36"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-drop-down id="DD_NodeClass">
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_OBJECT"
+                                                                                        value="OBJECT">
+                                                                                        <span>OBJECT</span>
+                                                                                    </davinci-option>
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_VARIABLE"
+                                                                                        value="VARIABLE">
+                                                                                        <span>VARIABLE</span>
+                                                                                    </davinci-option>
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_METHOD"
+                                                                                        value="METHOD">
+                                                                                        <span>METHOD</span>
+                                                                                    </davinci-option>
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_OBJECT_TYPE"
+                                                                                        value="OBJECT_TYPE">
+                                                                                        <span>OBJECT_TYPE</span>
+                                                                                    </davinci-option>
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_VARIABLE_TYPE"
+                                                                                        value="VARIABLE_TYPE">
+                                                                                        <span>VARIABLE_TYPE</span>
+                                                                                    </davinci-option>
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_REFERENCE_TYPE"
+                                                                                        value="REFERENCE_TYPE">
+                                                                                        <span>REFERENCE_TYPE</span>
+                                                                                    </davinci-option>
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_DATA_TYPE"
+                                                                                        value="DATA_TYPE">
+                                                                                        <span>DATA_TYPE</span>
+                                                                                    </davinci-option>
+                                                                                    <davinci-option
+                                                                                        id="Option_Node_VIEW"
+                                                                                        value="VIEW">
+                                                                                        <span>VIEW</span>
+                                                                                    </davinci-option>
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_OPCUAServer/OnNewStatusNodeClass"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_OPCUAServer/setNodeClass"
+                                                                                        path="param/args/class"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-drop-down>
+                                                                            </layout-column>
+                                                                        </layout-row>
+                                                                        <layout-row id="RowLayout14"
+                                                                            style="align-items: center">
+                                                                            <layout-column id="ColumnLayout20"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display id="VD_Node"
+                                                                                    value="Node:">
+                                                                                </davinci-value-display>
+                                                                            </layout-column>
+                                                                            <layout-column id="ColumnLayout21"
+                                                                                style="align-items: stretch">
+                                                                                <layout-row id="RowLayout28">
+                                                                                    <layout-column id="ColumnLayout40"
+                                                                                        style="align-items: stretch">
+                                                                                        <davinci-drop-down
+                                                                                            id="DD_IDType"
+                                                                                            label="ID Type">
+                                                                                            <davinci-option
+                                                                                                id="Option_STRING"
+                                                                                                value="STRING">
+                                                                                                <span>STRING</span>
+                                                                                            </davinci-option>
+                                                                                            <davinci-option
+                                                                                                id="Option_NUMERIC"
+                                                                                                value="NUMERIC">
+                                                                                                <span>NUMERIC</span>
+                                                                                            </davinci-option>
+                                                                                            <crown-edpws-binding
+                                                                                                property="value"
+                                                                                                name="CSK_OPCUAServer/OnNewStatusNodeIDType"
+                                                                                                update-on-resume>
+                                                                                            </crown-edpws-binding>
+                                                                                            <crown-binding
+                                                                                                event="change"
+                                                                                                name="CSK_OPCUAServer/setNodeIDType"
+                                                                                                path="param/args/idType"
+                                                                                                auto-commit>
+                                                                                            </crown-binding>
+                                                                                        </davinci-drop-down>
+                                                                                    </layout-column>
+                                                                                    <layout-column id="ColumnLayout39"
+                                                                                        style="align-items: stretch">
+                                                                                        <davinci-text-field
+                                                                                            id="TF_NodeID" type="text"
+                                                                                            label="ID">
+                                                                                            <crown-edpws-binding
+                                                                                                property="value"
+                                                                                                name="CSK_OPCUAServer/OnNewStatusNodeID"
+                                                                                                update-on-resume>
+                                                                                            </crown-edpws-binding>
+                                                                                            <crown-binding
+                                                                                                event="change"
+                                                                                                name="CSK_OPCUAServer/setNodeID"
+                                                                                                path="param/args/id"
+                                                                                                auto-commit>
+                                                                                            </crown-binding>
+                                                                                        </davinci-text-field>
+                                                                                    </layout-column>
+                                                                                </layout-row>
+                                                                            </layout-column>
+                                                                        </layout-row>
+												<layout-row id="RowLayout35" style="align-items: center">
+												<layout-column id="ColumnLayout23" style="align-items: stretch">
+												<davinci-value-display id="VD_NodeType" value="Node Type:">
+												</davinci-value-display>
+												</layout-column>
+												<layout-column id="ColumnLayout49" style="align-items: stretch">
+												<davinci-drop-down id="DD_NodeType">
+												<crown-edpws-binding property="value"
+													name="CSK_OPCUAServer/OnNewStatusNodeType" update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change" name="CSK_OPCUAServer/setNodeType"
+													path="param/args/nodeType" auto-commit>
+												</crown-binding>
+												<davinci-option id="Option_FolderType" value="FOLDER_TYPE">
+												<span>FOLDER_TYPE</span>
+												</davinci-option>
+												<davinci-option id="Option_PROPERTY_TYPE" value="PROPERTY_TYPE">
+												<span>PROPERTY_TYPE</span>
+												</davinci-option>
+												<davinci-option id="Option_BASE_DATA_VARIABLE_TYPE"
+													value="BASE_DATA_VARIABLE_TYPE">
+												<span>BASE_DATA_VARIABLE_TYPE</span>
+												</davinci-option>
+												</davinci-drop-down>
+												</layout-column>
+												</layout-row>
+                                                                        <layout-row id="RowLayout22"
+                                                                            style="align-items: center">
+                                                                            <layout-column id="ColumnLayout33"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-value-display
+                                                                                    id="VD_NodeReference"
+                                                                                    value="Node Reference:">
+                                                                                </davinci-value-display>
+                                                                            </layout-column>
+                                                                            <layout-column id="ColumnLayout34"
+                                                                                style="align-items: stretch">
+                                                                                <davinci-drop-down
+                                                                                    id="DD_NodeReference">
+                                                                                    <crown-edpws-binding property="data"
+                                                                                        name="CSK_OPCUAServer/OnNewStatusNodeReferenceList"
+                                                                                        update-on-resume
+                                                                                        converter="convertToList">
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-edpws-binding
+                                                                                        property="value"
+                                                                                        name="CSK_OPCUAServer/OnNewStatusNodeReference"
+                                                                                        update-on-resume>
+                                                                                    </crown-edpws-binding>
+                                                                                    <crown-binding event="change"
+                                                                                        name="CSK_OPCUAServer/setNodeReference"
+                                                                                        path="param/args/node"
+                                                                                        auto-commit>
+                                                                                    </crown-binding>
+                                                                                </davinci-drop-down>
+                                                                            </layout-column>
+                                                                        </layout-row>
+												<stacked-view id="SV_HasNodeReference">
+												<stacked-pane id="SP_HasNodeReference" value="true">
+												<layout-row id="RowLayout36" style="align-items: center">
+												<layout-column id="ColumnLayout50" style="align-items: stretch">
+												<davinci-value-display id="VD_ReferenceType" value="Reference type:">
+												</davinci-value-display>
+												</layout-column>
+												<layout-column id="ColumnLayout51" style="align-items: stretch">
+												<davinci-drop-down id="DD_ReferenceType">
+												<davinci-option id="Option_HAS_COMPONENT" value="HAS_COMPONENT">
+												<span>HAS_COMPONENT</span>
+												</davinci-option>
+												<davinci-option id="Option_HAS_ORDERED_COMPONENT"
+													value="HAS_ORDERED_COMPONENT">
+												<span>HAS_ORDERED_COMPONENT</span>
+												</davinci-option>
+												<davinci-option id="Option_HAS_PROPERTY" value="HAS_PROPERTY">
+												<span>HAS_PROPERTY</span>
+												</davinci-option>
+												<davinci-option id="Option_HAS_SUBTYPE" value="HAS_SUBTYPE">
+												<span>HAS_SUBTYPE</span>
+												</davinci-option>
+												<davinci-option id="Option_HAS_EVENT_SOURCE" value="HAS_EVENT_SOURCE">
+												<span>HAS_EVENT_SOURCE</span>
+												</davinci-option>
+												<davinci-option id="Option_HAS_NOTIFIER" value="HAS_NOTIFIER">
+												<span>HAS_NOTIFIER</span>
+												</davinci-option>
+												<davinci-option id="Option_ORGANIZES" value="ORGANIZES">
+												<span>ORGANIZES</span>
+												</davinci-option>
+												<davinci-option id="Option_GENERATES_EVENT" value="GENERATES_EVENT">
+												<span>GENERATES_EVENT</span>
+												</davinci-option>
+												<davinci-option id="Option_ALWAYS_GENERATES_EVENT"
+													value="ALWAYS_GENERATES_EVENT">
+												<span>ALWAYS_GENERATES_EVENT</span>
+												</davinci-option>
+												<davinci-option id="Option_HAS_TYPE_DEFINITION"
+													value="HAS_TYPE_DEFINITION">
+												<span>HAS_TYPE_DEFINITION</span>
+												</davinci-option>
+												<crown-edpws-binding property="value"
+													name="CSK_OPCUAServer/OnNewStatusNodeReferenceType"
+													update-on-resume>
+												</crown-edpws-binding>
+												<crown-binding event="change"
+													name="CSK_OPCUAServer/setNodeReferenceType"
+													path="param/args/refType" auto-commit>
+												</crown-binding>
+												</davinci-drop-down>
+												</layout-column>
+												</layout-row>
+												</stacked-pane>
+												<stacked-pane id="SP_HasNoNodeReference" value="false">
+												</stacked-pane>
+												<crown-edpws-binding property="value"
+													name="CSK_OPCUAServer/OnNewStatusNodeHasReference"
+													update-on-resume
+													converter="function(value) {return value.toString();}">
+												</crown-edpws-binding>
+											</stacked-view>
+                                                                        <stacked-view id="SV_NodeType">
+                                                                            <stacked-pane id="SP_NoRootNode"
+                                                                                value="VARIABLE">
+                                                                                <layout-row id="RowLayout27">
+                                                                                    <layout-column id="ColumnLayout38"
+                                                                                        style="align-items: stretch">
+                                                                                        <layout-row id="RowLayout18"
+                                                                                            style="align-items: center">
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout29"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_DataType"
+                                                                                                    value="Data type:">
+                                                                                                </davinci-value-display>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout30"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-drop-down
+                                                                                                    id="DD_NodeDataType">
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeBYTE_STRING"
+                                                                                                        value="BYTE_STRING">
+                                                                                                        <span>BYTE_STRING</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeBOOL"
+                                                                                                        value="BOOL">
+                                                                                                        <span>BOOL</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeBYTE"
+                                                                                                        value="BYTE">
+                                                                                                        <span>BYTE</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeSBYTE"
+                                                                                                        value="SBYTE">
+                                                                                                        <span>SBYTE</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeINT16"
+                                                                                                        value="INT16">
+                                                                                                        <span>INT16</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeUINT16"
+                                                                                                        value="UINT16">
+                                                                                                        <span>UINT16</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeINT32"
+                                                                                                        value="INT32">
+                                                                                                        <span>INT32</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeUINT32"
+                                                                                                        value="UINT32">
+                                                                                                        <span>UINT32</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeINT64"
+                                                                                                        value="INT64">
+                                                                                                        <span>INT64</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeUINT64"
+                                                                                                        value="UINT64">
+                                                                                                        <span>UINT64</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeFLOAT"
+                                                                                                        value="FLOAT">
+                                                                                                        <span>FLOAT</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeDOUBLE"
+                                                                                                        value="DOUBLE">
+                                                                                                        <span>DOUBLE</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeSTRING"
+                                                                                                        value="STRING">
+                                                                                                        <span>STRING</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeSTATUS_CODE"
+                                                                                                        value="STATUS_CODE">
+                                                                                                        <span>STATUS_CODE</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeDATE_TIME"
+                                                                                                        value="DATE_TIME">
+                                                                                                        <span>DATE_TIME</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeGUID"
+                                                                                                        value="GUID">
+                                                                                                        <span>GUID</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeNODE_ID"
+                                                                                                        value="NODE_ID">
+                                                                                                        <span>NODE_ID</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeEXPANDED_NODE_ID"
+                                                                                                        value="EXPANDED_NODE_ID">
+                                                                                                        <span>EXPANDED_NODE_ID</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeQUALIFIED_NAME"
+                                                                                                        value="QUALIFIED_NAME">
+                                                                                                        <span>QUALIFIED_NAME</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_TypeLOCALIZED_TEXT"
+                                                                                                        value="LOCALIZED_TEXT">
+                                                                                                        <span>LOCALIZED_TEXT</span>
+                                                                                                    </davinci-option>
+                                                                                                    <crown-edpws-binding
+                                                                                                        property="value"
+                                                                                                        name="CSK_OPCUAServer/OnNewStatusNodeDataType"
+                                                                                                        update-on-resume>
+                                                                                                    </crown-edpws-binding>
+                                                                                                    <crown-binding
+                                                                                                        event="change"
+                                                                                                        name="CSK_OPCUAServer/setNodeDataType"
+                                                                                                        path="param/args/dataType"
+                                                                                                        auto-commit>
+                                                                                                    </crown-binding>
+                                                                                                </davinci-drop-down>
+                                                                                            </layout-column>
+                                                                                        </layout-row>
+                                                                                        <layout-row id="RowLayout21"
+                                                                                            style="align-items: center">
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout31"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-value-display
+                                                                                                    id="VD_NodeAccessLevel"
+                                                                                                    value="Node access level:">
+                                                                                                </davinci-value-display>
+                                                                                            </layout-column>
+                                                                                            <layout-column
+                                                                                                id="ColumnLayout32"
+                                                                                                style="align-items: stretch">
+                                                                                                <davinci-drop-down
+                                                                                                    id="DD_NodeAccessLevel">
+                                                                                                    <davinci-option
+                                                                                                        id="Option_NodeREAD_WRITE"
+                                                                                                        value="READ_WRITE">
+                                                                                                        <span>READ_WRITE</span>
+                                                                                                    </davinci-option>
+                                                                                                    <davinci-option
+                                                                                                        id="Option_NodeREAD"
+                                                                                                        value="READ">
+                                                                                                        <span>READ</span>
+                                                                                                    </davinci-option>
+                                                                                                    <crown-edpws-binding
+                                                                                                        property="value"
+                                                                                                        name="CSK_OPCUAServer/OnNewStatusNodeAccessLevel"
+                                                                                                        update-on-resume>
+                                                                                                    </crown-edpws-binding>
+                                                                                                    <crown-binding
+                                                                                                        event="change"
+                                                                                                        name="CSK_OPCUAServer/setNodeAccessLevel"
+                                                                                                        path="param/args/level"
+                                                                                                        auto-commit>
+                                                                                                    </crown-binding>
+                                                                                                </davinci-drop-down>
+                                                                                            </layout-column>
+                                                                                        </layout-row>
+												<curie-callout id="DC_FlowConfigInfo" type="info"
+													value="FlowConfig priority active.">
+												<crown-edpws-binding property="hidden"
+													name="CSK_OPCUAServer/OnNewStatusFlowConfigPriority"
+													update-on-resume converter="function(value) {return !value;}">
+												</crown-edpws-binding>
+												</curie-callout>
+												<layout-row id="RowLayout4" style="align-items: center">
+												<layout-column id="ColumnLayout6" style="align-items: stretch">
 												<davinci-value-display id="VD_RegisteredEvent"
 													value="Registered event"
 													title="Source to receive data to process.">
 												</davinci-value-display>
-                                                    </layout-column>
-                                                    <layout-column id="ColumnLayout8" style="align-items: stretch">
+												</layout-column>
+												<layout-column id="ColumnLayout8" style="align-items: stretch">
 												<davinci-text-field id="TF_RegisteredEvent" type="text"
 													title="Source to receive data to process.">
 												<crown-edpws-binding property="value"
-													name="CSK_OPCUAServer/OnNewStatusEventToRegister" update-on-resume>
+													name="CSK_OPCUAServer/OnNewStatusEventToRegister"
+													update-on-resume>
 												</crown-edpws-binding>
-												<crown-binding event="change" name="CSK_OPCUAServer/setEventToRegister"
-													path="param/args/event" auto-commit>
+												<crown-binding event="change"
+													name="CSK_OPCUAServer/setEventToRegister" path="param/args/event"
+													auto-commit>
 												</crown-binding>
 												<crown-edpws-binding property="disabled"
 													name="CSK_OPCUAServer/OnNewStatusFlowConfigPriority"
 													update-on-resume>
 												</crown-edpws-binding>
 												</davinci-text-field>
+												</layout-column>
+												</layout-row>
+                                                                                    </layout-column>
+                                                                                </layout-row>
+                                                                            </stacked-pane>
+                                                                            <stacked-pane id="SP_RootNode"
+                                                                                value="OBJECT">
+                                                                                <layout-row id="RowLayout26">
+                                                                                    <layout-column id="ColumnLayout37"
+                                                                                        style="align-items: stretch">
+                                                                                    </layout-column>
+                                                                                </layout-row>
+                                                                            </stacked-pane>
+                                                                            <crown-edpws-binding property="value"
+                                                                                name="CSK_OPCUAServer/OnNewStatusNodeClass"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                        </stacked-view>
+                                                                        <layout-row id="RowLayout16"
+                                                                            style="justify-content: flex-end">
+                                                                            <davinci-button id="Button_AddNode"
+                                                                                class="myCustomButton_CSK_Module_OPCUAServer"
+                                                                                type="outline" icon-position="append"
+                                                                                icon="content/add" title="Add node">
+                                                                                <span></span>
+                                                                                <crown-binding event="submit"
+                                                                                    name="CSK_OPCUAServer/addNodeViaUI"
+                                                                                    auto-commit>
+                                                                                </crown-binding>
+                                                                                <crown-edpws-binding property="disabled"
+                                                                                    name="CSK_OPCUAServer/OnNewStatusServerActive"
+                                                                                    update-on-resume>
+                                                                                </crown-edpws-binding>
+                                                                            </davinci-button>
+                                                                            <davinci-button id="Button_DeleteNode"
+                                                                                class="myCustomButton_CSK_Module_OPCUAServer"
+                                                                                type="outline" icon-position="append"
+                                                                                icon="action/delete"
+                                                                                title="Delete current selected NodeID.">
+                                                                                <span></span>
+                                                                                <crown-binding event="submit"
+                                                                                    name="CSK_OPCUAServer/deleteNodeViaUI"
+                                                                                    auto-commit>
+                                                                                </crown-binding>
+                                                                                <crown-edpws-binding property="disabled"
+                                                                                    name="CSK_OPCUAServer/OnNewStatusServerActive"
+                                                                                    update-on-resume>
+                                                                                </crown-edpws-binding>
+                                                                            </davinci-button>
+                                                                        </layout-row>
+                                                                    </layout-column>
+                                                                </layout-row>
+                                                            </stacked-pane>
+                                                            <stacked-pane id="SP_NamespaceNotActive" value="false">
+                                                            </stacked-pane>
+                                                            <crown-edpws-binding property="value"
+                                                                name="CSK_OPCUAServer/OnNewStatusNamespaceExists"
+                                                                update-on-resume
+                                                                converter="function(value) {return value.toString();}">
+                                                            </crown-edpws-binding>
+                                                        </stacked-view>
                                                     </layout-column>
                                                 </layout-row>
-                                            </layout-column>
-                                        </layout-row>
+                                            </davinci-tab>
+                                        </davinci-tabs>
                                     </layout-column>
                                 </layout-row>
                             </layout-column>

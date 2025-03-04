@@ -34,8 +34,16 @@ end
 -- Function to load specific APIs
 local function loadSpecificAPIs()
   -- If you want to check for specific APIs/functions supported on the device the module is running, place relevant APIs here
-  -- e.g.:
-  -- NTPClient = require 'API.NTPClient'
+  OPCUA = {}
+  OPCUA.Server = require 'API.OPCUA.Server'
+  OPCUA.Server.EndpointConfiguration = require 'API.OPCUA.Server.EndpointConfiguration'
+  OPCUA.Server.FileCertificateStoreConfiguration = require 'API.OPCUA.Server.FileCertificateStoreConfiguration'
+  OPCUA.Server.Namespace = require 'API.OPCUA.Server.Namespace'
+  OPCUA.Server.Node = require 'API.OPCUA.Server.Node'
+  OPCUA.Server.SecurityConfiguration = require 'API.OPCUA.Server.SecurityConfiguration'
+  OPCUA.Server.ServerConfiguration = require 'API.OPCUA.Server.ServerConfiguration'
+  OPCUA.Server.UserTokenDatabase = require 'API.OPCUA.Server.UserTokenDatabase'
+  OPCUA.Server.Value = require 'API.OPCUA.Server.Value'
 end
 
 availableAPIs.default = xpcall(loadAPIs, debug.traceback) -- TRUE if all default APIs were loaded correctly

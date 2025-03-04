@@ -72,6 +72,106 @@ ToDo +
                     <desc>Notify new result...</desc>
                     <param desc="Result" multiplicity="1" name="result" type="auto"/>
                 </event>
+                <event name="OnNewStatusApplicationName">
+                    <desc>Notfiy application name.</desc>
+                    <param desc="Application name." multiplicity="1" name="name" type="string"/>
+                </event>
+                <event name="OnNewStatusNamespaceIndex">
+                    <desc>Notify index of namespace.</desc>
+                    <param desc="Index" multiplicity="1" name="index" type="int"/>
+                </event>
+                <event name="OnNewStatusApplicationURI">
+                    <desc>Notify URI of application.</desc>
+                    <param desc="Application URI." multiplicity="1" name="uri" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeIDType">
+                    <desc>Notify type of node ID to create.</desc>
+                    <param desc="Node ID type." multiplicity="1" name="type" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeID">
+                    <desc>Notify ID of node to create.</desc>
+                    <param desc="Node ID." multiplicity="1" name="id" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeTypeDefinition">
+                    <desc>Notify node type.</desc>
+                    <param desc="Standard node type." multiplicity="1" name="type" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeAccessLevel">
+                    <desc>Notify access level of node.</desc>
+                    <param desc="Access level." multiplicity="1" name="level" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeDataType">
+                    <desc>Notify data type of node.</desc>
+                    <param desc="Standard node type." multiplicity="1" name="type" type="string"/>
+                </event>
+                <event name="OnNewStatusInterface">
+                    <desc>Notify interface to use for OPC UA server.</desc>
+                    <param desc="Interface" multiplicity="1" name="interface" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeClass">
+                    <desc>Notify class of node to create.</desc>
+                    <param desc="Class of node." multiplicity="1" name="class" type="string"/>
+                </event>
+                <event name="OnNewStatusIsRootNode">
+                    <desc>Notify if node is a root node.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusNodeReference">
+                    <desc>Notify node reference.</desc>
+                    <param desc="Reference node." multiplicity="1" name="node" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeType">
+                    <desc>Notify type of node.</desc>
+                    <param desc="Type of node (ROOT or VARIABLE)" multiplicity="1" name="nodeType" type="string"/>
+                </event>
+                <event name="OnNewStatusServerIsCurrentlyActive">
+                    <desc>Notify status if server is currently active.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusServerActive">
+                    <desc>Notify status if server should be active.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusNodeReferenceList">
+                    <desc>Notify list of available node references.</desc>
+                    <param desc="List of references." multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusInterfaceList">
+                    <desc>Notify list of available interfaces.</desc>
+                    <param desc="List" multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusAllNodesList">
+                    <desc>Notify list of nodes.</desc>
+                    <param desc="List" multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusPort">
+                    <desc>Notify port of OPC UA server.</desc>
+                    <param desc="Port" multiplicity="1" name="port" type="int"/>
+                </event>
+                <event name="OnNewStatusNamespaceURL">
+                    <desc>Notify URL of namespace.</desc>
+                    <param desc="URL" multiplicity="1" name="url" type="string"/>
+                </event>
+                <event name="OnNewStatusNamespaceExists">
+                    <desc>Notfiy if there is a namepsace.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewStatusSelectedNamespace">
+                    <desc>Notify currently selected namespace.</desc>
+                    <param desc="Namespace" multiplicity="1" name="namespace" type="string"/>
+                </event>
+                <event name="OnNewStatusNamespaceList">
+                    <desc>Notify list of available namespaces.</desc>
+                    <param desc="List of namespaces." multiplicity="1" name="list" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeReferenceType">
+                    <desc>Notify node reference type.</desc>
+                    <param desc="Reference type." multiplicity="1" name="refType" type="string"/>
+                </event>
+                <event name="OnNewStatusNodeHasReference">
+                    <desc>Notify status if node has a reference.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
                 <function name="setParameterName">
                     <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
                     <param desc="Name of the parameter." multiplicity="1" name="name" type="string"/>
@@ -114,6 +214,87 @@ ToDo +
                 <function name="setFlowConfigPriority">
                     <desc>Function to configure if FlowConfig should have priority for FlowConfig relevant configuration.</desc>
                     <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setInterface">
+                    <desc>Function to set interface to use for OPC UA server.</desc>
+                    <param desc="Interface" multiplicity="1" name="interface" type="string"/>
+                </function>
+                <function name="setApplicationName">
+                    <desc>Function to set application name.</desc>
+                    <param desc="Name of application." multiplicity="1" name="name" type="string"/>
+                </function>
+                <function name="setNamespaceIndex">
+                    <desc>Function to set index of namespace.</desc>
+                    <param desc="Index" multiplicity="1" name="index" type="int"/>
+                </function>
+                <function name="setApplicationURI">
+                    <desc>Function to set URL of application.</desc>
+                    <param desc="URI" multiplicity="1" name="uri" type="string"/>
+                </function>
+                <function name="setNodeTypeDefinition">
+                    <desc>Function to set type definition of node.</desc>
+                    <param desc="Type of node." multiplicity="1" name="nodeType" type="string"/>
+                </function>
+                <function name="setNodeClass">
+                    <desc>Function to set class of node.</desc>
+                    <param desc="Class" multiplicity="1" name="class" type="string"/>
+                </function>
+                <function name="setNodeIDType">
+                    <desc>Function to set type of node ID.</desc>
+                    <param desc="Type of ID." multiplicity="1" name="idType" type="string"/>
+                </function>
+                <function name="setNodeID">
+                    <desc>Function to set ID of node.</desc>
+                    <param desc="Node ID." multiplicity="1" name="id" type="string"/>
+                </function>
+                <function name="setNodeDataType">
+                    <desc>Function to set data type of Node.</desc>
+                    <param desc="Data type." multiplicity="1" name="dataType" type="string"/>
+                </function>
+                <function name="setNodeAccessLevel">
+                    <desc>Function to set access level of node.</desc>
+                    <param desc="Acces level." multiplicity="1" name="level" type="string"/>
+                </function>
+                <function name="setIsRootNode">
+                    <desc>Function to set if node is a root node.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setNodeReference">
+                    <desc>Function to set optional node reference.</desc>
+                    <param desc="Reference node." multiplicity="1" name="node" type="string"/>
+                </function>
+                <function name="addNodeViaUI">
+                    <desc>Function to add preconfigured node.</desc>
+                </function>
+                <function name="setServerActive">
+                    <desc>Function set activation status of OPC UA server.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setNodeType">
+                    <desc>Function to set type of node.</desc>
+                    <param desc="Type (ROOT or VARIABLE)" multiplicity="1" name="nodeType" type="string"/>
+                </function>
+                <function name="selectNodeViaUI">
+                    <desc>Function to select specific node within UI table.</desc>
+                    <param desc="Selection" multiplicity="1" name="selection" type="string"/>
+                </function>
+                <function name="deleteNodeViaUI">
+                    <desc>Function to delete currently selected node via UI.</desc>
+                </function>
+                <function name="setPort">
+                    <desc>Function to set port for server.</desc>
+                    <param desc="Port" multiplicity="1" name="port" type="int"/>
+                </function>
+                <function name="setNamespaceURL">
+                    <desc>Function to set URL of namespace.</desc>
+                    <param desc="URL" multiplicity="1" name="url" type="string"/>
+                </function>
+                <function name="addNamespaceViaUI">
+                    <desc>Function to add a namespace.</desc>
+                </function>
+                <function name="setNodeReferenceType">
+                    <desc>Function to set optional node reference type.</desc>
+                    <param desc="Reference type." multiplicity="1" name="refType" type="string"/>
                 </function>
             </serves>
         </crown>
