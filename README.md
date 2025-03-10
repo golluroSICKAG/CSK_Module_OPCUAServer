@@ -1,22 +1,26 @@
 # CSK_Module_OPCUAServer
-## INFO: Draft version. Not further developed / tested so far! Check for available GitHub forks of this repository to see latest updates.
 
 Module to provide OPC UA server functionality.
 
-*If available, please also add a screenshot/gif of the UI of the module here placed within /docu/media/ (see code)*
 ![](./docu/media/UI_Screenshot.png)
 
 ## How to Run
 
-[***...please fill with informations...***]  
 For further information check out the [documentation](https://raw.githack.com/SICKAppSpaceCodingStarterKit/CSK_Module_OPCUAServer/main/docu/CSK_Module_OPCUAServer.html) in the folder "docu".
 
 ## Information
 
+### Known issues
+Tests were made only with these options:  
+"Node classes" VARIABLE or OBJECT  
+"Reference Type" ORGANIZES  
+"Node Type" FOLDER_TYPE (if class = OBJECT)  
+"Data type" INT32 (if class = VARIABLE)  
+
 Tested on:
 |Device|Firmware|Module version
 |--|--|--|
-|e.g. SICK AppEngine|V1.5.0|V0.1.0|
+|SIM1012|V2.4.2|V0.1.0|
 
 This module is part of the SICK AppSpace Coding Starter Kit developing approach.  
 It is programmed in an object oriented way. Some of the modules use kind of "classes" in Lua to make it possible to reuse code / classes in other projects.  
