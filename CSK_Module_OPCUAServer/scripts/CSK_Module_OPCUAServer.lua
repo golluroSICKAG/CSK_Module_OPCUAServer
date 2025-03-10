@@ -34,7 +34,7 @@ _G.availableAPIs = require('Communication/OPCUAServer/helper/checkAPIs') -- can 
 _G.logger = Log.SharedLogger.create('ModuleLogger')
 _G.logHandle = Log.Handler.create()
 _G.logHandle:attachToSharedLogger('ModuleLogger')
-_G.logHandle:setConsoleSinkEnabled(true) --> Set to TRUE if CSK_Logger module is not used
+_G.logHandle:setConsoleSinkEnabled(false) --> Set to TRUE if CSK_Logger module is not used
 _G.logHandle:setLevel("ALL")
 _G.logHandle:applyConfig()
 -----------------------------------------------------------
@@ -66,13 +66,8 @@ local function main()
   --       If so, the app will trigger the "OnDataLoadedOnReboot" event if ready after loading parameters
   --
   -- Can be used e.g. like this
-  ----------------------------------------------------------------------------------------
-
-  -- _G.opcuaServer_Model.doSomething() -- if you want to start a function
-  -- ...
-  --_G.opcuaServer_Model.startServer()
-  CSK_OPCUAServer.pageCalled() -- Update UI
-
+    --[[
+  CSK_OPCUAServer.setNamespaceIndex(2)
   CSK_OPCUAServer.addNamespaceViaUI()
 
   --CSK_OPCUAServer.setNodeType('VARIABLE')
@@ -97,18 +92,15 @@ local function main()
   CSK_OPCUAServer.setNodeID("NodeIDNo1")
   CSK_OPCUAServer.setEventToRegister('CSK_Commands.OnNewEvent2')
   CSK_OPCUAServer.addNodeViaUI()
-  
-  print("Done")
 
   --CSK_OPCUAServer.setServerActive(true)
+  ]]
+  ----------------------------------------------------------------------------------------
+
+  CSK_OPCUAServer.pageCalled() -- Update UI
 
 end
 Script.register("Engine.OnStarted", main)
-
---OR
-
--- Call function after persistent data was loaded
---Script.register("CSK_OPCUAServer.OnDataLoadedOnReboot", main)
 
 --**************************************************************************
 --**********************End Function Scope *********************************

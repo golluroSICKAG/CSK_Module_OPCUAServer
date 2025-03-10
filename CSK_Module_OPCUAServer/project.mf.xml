@@ -7,15 +7,24 @@
         </crown>
         <crown name="CSK_OPCUAServer">
             <trait>released</trait>
-            <desc>Please fill in information regarding: What is the idea of this module and its features? +
-How to use this module in general.... like: + 
-{empty} + 
+            <desc>Module to provide OPC UA server functionality. Please check the OPCUA API docu of the device regarding further background information... +
 Typically the features of this module are used like this (check also main script of this module): +
+{empty} +
 **1) Setup** +
-ToDo +
-{empty} + 
-**2) Something else...** +
-</desc>
+1) Set the interface and port via 'setInterface' and 'setPort'. +
+2) Optionally set application name and URI (see 'setApplicationName' and 'setApplicationURI') +
+3) Set a namespace index (starting with 2) and optionally a namepsace URL (see 'setNamespaceIndex' and 'setNamespaceURL'). +
+4) Call 'addNamespaceViaUI' to create a namespace. +
+{empty} +
+**2) Nodes** +
+It is possible to create nodes within the currently selected namespace. +
+1) Select a class for the node ('setNodeClass') and the node ID type and its ID ('setNodeIDType', 'setNodeID'). +
+2) Via 'setNodeReference' and 'setNodeReferenceType' it is possible to configure the references of the node. +
+3) Via 'setNodeType' (e.g. for nodes of class OBJECT) or 'setNodeDataType' / 'setNodeAccessLevel' (for nodes of class VARIABLE) further configuration can be done. +
+4) If a node is a VARIABLE it is possible to set an event to receive values to set for this node via 'setEventToRegister'. +
+5) Via 'addNodeViaUI' the preconfigured node can be added to the namespace. +
+6) If the node is of class VARIABLE it will create an event like 'CSK_OPUAServer.OnNewValueUpdate_NAMESPACE_NODEID' to notify if the value of the node was written by the client. Other applications can register on these events. +
+{empty} +</desc>
             <serves>
                 <event name="OnNewStatusLoadParameterOnReboot">
                     <desc>Notify status if parameters should be loaded on app/device boot up.</desc>
@@ -68,10 +77,6 @@ ToDo +
                     <desc>Notify event to register to and to process data.</desc>
                     <param desc="Name of event" multiplicity="1" name="eventName" type="string"/>
                 </event>
-                <event name="OnNewResult">
-                    <desc>Notify new result...</desc>
-                    <param desc="Result" multiplicity="1" name="result" type="auto"/>
-                </event>
                 <event name="OnNewStatusApplicationName">
                     <desc>Notfiy application name.</desc>
                     <param desc="Application name." multiplicity="1" name="name" type="string"/>
@@ -92,10 +97,6 @@ ToDo +
                     <desc>Notify ID of node to create.</desc>
                     <param desc="Node ID." multiplicity="1" name="id" type="string"/>
                 </event>
-                <event name="OnNewStatusNodeTypeDefinition">
-                    <desc>Notify node type.</desc>
-                    <param desc="Standard node type." multiplicity="1" name="type" type="string"/>
-                </event>
                 <event name="OnNewStatusNodeAccessLevel">
                     <desc>Notify access level of node.</desc>
                     <param desc="Access level." multiplicity="1" name="level" type="string"/>
@@ -111,10 +112,6 @@ ToDo +
                 <event name="OnNewStatusNodeClass">
                     <desc>Notify class of node to create.</desc>
                     <param desc="Class of node." multiplicity="1" name="class" type="string"/>
-                </event>
-                <event name="OnNewStatusIsRootNode">
-                    <desc>Notify if node is a root node.</desc>
-                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
                 </event>
                 <event name="OnNewStatusNodeReference">
                     <desc>Notify node reference.</desc>
@@ -171,6 +168,18 @@ ToDo +
                 <event name="OnNewStatusNodeHasReference">
                     <desc>Notify status if node has a reference.</desc>
                     <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewValueUpdate_NAMESPACE_NODEID">
+                    <trait>released</trait>
+                    <desc>Example for dynamically created event to notify updates of nodes via client. +
+"NAMESPACE" and "NODEID" will be replaced by related namespace and node ID (e.g. 'CSK_OPCUAServer.OnNewValueUpdate_NamespaceID2_NodeNo2'). +
+This event will be created during runtime. So for users of this event, it is necessary to check first if this event is already available to be able to register to it. +
+INFO: As this event will be created dynamically, there is no auto completion within SICK AppStudio available for such an event.</desc>
+                    <param desc="Updated value." multiplicity="?" name="value" type="auto"/>
+                </event>
+                <event name="OnNewStatusCurrentNodeValue">
+                    <desc>Notify value of currently selected node.</desc>
+                    <param desc="Value" multiplicity="1" name="value" type="string"/>
                 </event>
                 <function name="setParameterName">
                     <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
@@ -231,10 +240,6 @@ ToDo +
                     <desc>Function to set URL of application.</desc>
                     <param desc="URI" multiplicity="1" name="uri" type="string"/>
                 </function>
-                <function name="setNodeTypeDefinition">
-                    <desc>Function to set type definition of node.</desc>
-                    <param desc="Type of node." multiplicity="1" name="nodeType" type="string"/>
-                </function>
                 <function name="setNodeClass">
                     <desc>Function to set class of node.</desc>
                     <param desc="Class" multiplicity="1" name="class" type="string"/>
@@ -254,10 +259,6 @@ ToDo +
                 <function name="setNodeAccessLevel">
                     <desc>Function to set access level of node.</desc>
                     <param desc="Acces level." multiplicity="1" name="level" type="string"/>
-                </function>
-                <function name="setIsRootNode">
-                    <desc>Function to set if node is a root node.</desc>
-                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
                 </function>
                 <function name="setNodeReference">
                     <desc>Function to set optional node reference.</desc>
@@ -295,6 +296,13 @@ ToDo +
                 <function name="setNodeReferenceType">
                     <desc>Function to set optional node reference type.</desc>
                     <param desc="Reference type." multiplicity="1" name="refType" type="string"/>
+                </function>
+                <function name="deleteNamespaceViaUI">
+                    <desc>Function to delete preselected namespace.</desc>
+                </function>
+                <function name="setSelectedNamespace">
+                    <desc>Function to select namespace.</desc>
+                    <param desc="Name of namespace." multiplicity="1" name="name" type="string"/>
                 </function>
             </serves>
         </crown>
@@ -369,12 +377,12 @@ ToDo +
             </crown>
         </crown>
         <meta key="author">SICK AG</meta>
-        <meta key="version">0.1.0</meta>
+        <meta key="version">0.2.0</meta>
         <meta key="priority">low</meta>
         <meta key="copy-protected">false</meta>
         <meta key="read-protected">false</meta>
         <meta key="crown2-flow-engine">false</meta>
-        <meta key="LuaLoadAllEngineAPI">true</meta>
+        <meta key="LuaLoadAllEngineAPI">false</meta>
         <entry default="CSK_Module_OPCUAServer.lua" path="scripts"/>
     </application>
 </manifest>

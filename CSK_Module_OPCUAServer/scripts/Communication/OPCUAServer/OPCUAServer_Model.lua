@@ -8,14 +8,6 @@
 --**********************Start Global Scope *********************************
 --**************************************************************************
 
------------------
-local tmr = Timer.create()
-tmr:setExpirationTime(1000)
-tmr:setPeriodic(true)
-
-local baseEventTypeNode
------------------
-
 local nameOfModule = 'CSK_OPCUAServer'
 
 local opcuaServer_Model = {}
@@ -49,11 +41,8 @@ opcuaServer_Model.server = OPCUA.Server.create() -- OPC UA server handle
 opcuaServer_Model.namespaces = {} -- Namespaces of OPC UA server
 opcuaServer_Model.selectedNamespace = '' -- Name of selected namespace
 opcuaServer_Model.selectedNamespaceIndex = 2 -- Selected namespace index
-opcuaServer_Model.selectedNamespaceURI = '' -- Selected namespace URI
-
+opcuaServer_Model.selectedNamespaceURL = '' -- Selected namespace URL, e.g. 
 opcuaServer_Model.nodeReferences = {} -- List of available node references
-opcuaServer_Model.listOfReferences = '' -- String list of available node references 
-
 opcuaServer_Model.tempNodes = {} -- Table of temporary nodes of all namespaces
 
 opcuaServer_Model.currentNodeClass = 'OBJECT' -- OPC UA node class, check ENUMs OPCUA.NodeClass
@@ -66,6 +55,7 @@ opcuaServer_Model.currentNodeReference = '' -- Optional node reference
 opcuaServer_Model.currentNodeReferenceType = 'ORGANIZES' -- Optional reference type
 opcuaServer_Model.currentEventToRegister = 'CSK_Commands.OnNewEvent' -- Event to receive data for node
 opcuaServer_Model.setValueFunctions = {} -- Function to handle the set value event calls
+opcuaServer_Model.onWriteFunctions = {} -- Function to handle if value was written by client
 
 opcuaServer_Model.currentNodes = {} -- Table of nodes of all namespaces
 opcuaServer_Model.listOfNodeIDs = {} -- List of all existing node IDs (to prevent nodes with same ID)
@@ -80,7 +70,6 @@ opcuaServer_Model.parameters.flowConfigPriority = CSK_FlowConfig ~= nil or false
 opcuaServer_Model.parameters.active = false -- Status if OPC UA server should be active
 opcuaServer_Model.parameters.interface = opcuaServer_Model.ethernetPorts[1] -- Interface to use for OPC UA server
 opcuaServer_Model.parameters.port = 4840 -- Server port
-opcuaServer_Model.parameters.registerEvent = '' -- Event to get data
 opcuaServer_Model.parameters.applicationName = 'CSK_ApplicationServer' -- OPC UA application name
 opcuaServer_Model.parameters.applicationURI = '' -- Optional application URI, like urn://sick.com/opc/ua/app/sim/sim4000/12345678
 
@@ -119,7 +108,6 @@ local function addAllNodes(node, reference, nameSpace)
     end
 
     if value.class == 'OBJECT' then
-      --newNode:setTypeDefinition('FOLDER_TYPE')
       newNode:setTypeDefinition(value.nodeType)
     elseif value.class == 'VARIABLE' then
       newNode:setDataType(value.dataType)
@@ -127,20 +115,28 @@ local function addAllNodes(node, reference, nameSpace)
     end
     opcuaServer_Model.currentNodes[nameSpace][value.id] = newNode
     reference:addReference(value.referenceType, newNode)
-    --opcuaServer_Model.currentNodes[opcuaServer_Model.parameters.nodes.references[key]]:addReference('HAS_EVENT_SOURCE', newNode)
 
     table.insert(opcuaServer_Model.tempNodes[nameSpace], opcuaServer_Model.currentNodes[nameSpace][value.id])
 
     local function setValue(newValue)
-      --print("Set value " .. newValue .. ' for NodeID ' .. value.id)
       opcuaServer_Model.currentNodes[nameSpace][value.id]:setValue(newValue)
     end
     opcuaServer_Model.setValueFunctions[value.id] = setValue
 
+    local isServed = Script.isServedAsEvent('CSK_OPCUAServer.OnNewValueUpdate_' .. nameSpace .. '_' .. value.id)
+    if not isServed then
+      Script.serveEvent('CSK_OPCUAServer.OnNewValueUpdate_' .. nameSpace .. '_' .. value.id, 'OPCUAServer_OnNewValueUpdate_'  .. nameSpace .. '_' .. value.id, 'auto:?')
+    end
+
+    local function gotNewValue()
+      local newValue = opcuaServer_Model.currentNodes[nameSpace][value.id]:getValue()
+      Script.notifyEvent('OPCUAServer_OnNewValueUpdate_'  .. nameSpace .. '_' .. value.id, newValue)
+    end
+    opcuaServer_Model.onWriteFunctions[value.id] = gotNewValue
+    local getSuc = OPCUA.Server.Node.register(newNode, "OnWrite", opcuaServer_Model.onWriteFunctions[value.id])
+
     if value.registeredEvent ~= '' and value.registeredEvent ~= nil then
-      --print("Register to event " .. value.registeredEvent)
       local suc = Script.register(value.registeredEvent, opcuaServer_Model.setValueFunctions[value.id])
-      --print(suc)
     end
 
     if value.nodes then
@@ -164,12 +160,16 @@ local function startServer()
   opcuaServer_Model.server:setApplicationName(opcuaServer_Model.parameters.applicationName)
   opcuaServer_Model.server:setApplicationURI(opcuaServer_Model.parameters.applicationURI)
 
-  --TODO
-  --opcuaServer_Model.baseEventTypeNode = OPCUA.Server.Namespace.getNodeFromStandardNamespace(opcuaServer_Model.namespace, 'NUMERIC', 2041 ) -- 2041: BaseEventType
-
   for namespaceKey, _ in pairs(opcuaServer_Model.parameters.namespaces.names) do
     local namespace = OPCUA.Server.Namespace.create() -- First namespace
-    namespace:setIndex(opcuaServer_Model.parameters.namespaces.indexes[namespaceKey])
+    if opcuaServer_Model.parameters.namespaces.urls[namespaceKey] ~= '' then
+      namespace:setIndex(opcuaServer_Model.parameters.namespaces.indexes[namespaceKey], opcuaServer_Model.parameters.namespaces.urls[namespaceKey])
+    else
+      namespace:setIndex(opcuaServer_Model.parameters.namespaces.indexes[namespaceKey])
+    end
+
+    local defaultNamespaceNode = OPCUA.Server.Namespace.getNodeFromStandardNamespace(namespace, "NUMERIC", 85)
+
     table.insert(opcuaServer_Model.namespaces, namespace)
 
     local rootNodeData
@@ -185,8 +185,9 @@ local function startServer()
 
     opcuaServer_Model.currentNodes[namespaceKey] = {}
     opcuaServer_Model.currentNodes[namespaceKey][namespaceKey] = rootNode
+    OPCUA.Server.Node.addReference(defaultNamespaceNode, 'ORGANIZES', opcuaServer_Model.currentNodes[namespaceKey][namespaceKey])
 
-    opcuaServer_Model.tempNodes[namespaceKey] = {} -- Does this work for multiple namespaces? TODO
+    opcuaServer_Model.tempNodes[namespaceKey] = {}
 
     -- Add all nodes
     local suc = addAllNodes(rootNodeData.nodes, opcuaServer_Model.currentNodes[namespaceKey][namespaceKey], namespaceKey)
@@ -197,7 +198,6 @@ local function startServer()
 
     -- Adding all created nodes to the namespace
     opcuaServer_Model.namespaces[#opcuaServer_Model.namespaces]:setNodes(opcuaServer_Model.tempNodes[namespaceKey])
-
   end
 
   opcuaServer_Model.server:setNamespaces(opcuaServer_Model.namespaces)
@@ -208,72 +208,17 @@ local function startServer()
     _G.logger:warning(nameOfModule .. ": Starting server did not work!")
   end
   Script.notifyEvent('OPCUAServer_OnNewStatusServerIsCurrentlyActive', opcuaServer_Model.isActive)
-  --tmr:start()
 end
 opcuaServer_Model.startServer = startServer
 
 local function stopServer()
   local suc = opcuaServer_Model.server:stop()
   opcuaServer_Model.server:resetAddressSpace()
-  --tmr:stop()
   _G.logger:fine(nameOfModule .. ": Success to stop server: " .. tostring(suc))
   opcuaServer_Model.isActive = false
   Script.notifyEvent('OPCUAServer_OnNewStatusServerIsCurrentlyActive', opcuaServer_Model.isActive)
 end
 opcuaServer_Model.stopServer = stopServer
-
-
-------------------------------------------
-------------------------------------------
-------------------------------------------
-local value = 100
-local function handleOnExpired()
-  --print("Set " .. tostring(value))
-  value = value + 1
-  --opcuaServer_Model.currentNodes['NodeID']:setValue(value)
-
-  --opcuaServer_Model.currentNodes['NodeIDNo2']:setValue(value-50)
-
-  --opcuaServer_Model.currentNodes['NodeIDNo3']:setValue(value-50)
-
-  --Actual notification of the event, which can be viewed in the client
-  --local message = 'Begin Message Event ' .. value .. ' ' .. string.rep('x', 10) .. ' End Message Event ' .. value
-  --print(message)
-  --OPCUA.Server.Node.notifyEvent(opcuaServer_Model.currentNodes['NodeID123'], opcuaServer_Model.baseEventTypeNode, 'MEDIUM', message)
-end
-Timer.register(tmr, 'OnExpired', handleOnExpired)
-------------------------------------------
-------------------------------------------
-------------------------------------------
-
-
-
-
-
-
-
-
-
-
---[[
-local function registerToEvent(event)
-  if opcuaServer_Model.parameters.registerEvent then
-    Script.deregister(opcuaServer_Model.parameters.registerEvent, processData)
-  end
-  opcuaServer_Model.parameters.registerEvent = event
-  Script.register(event, processData)
-end
-opcuaServer_Model.registerToEvent = registerToEvent
-
-local function deregisterFromEvent()
-  if opcuaServer_Model.parameters.registerEvent ~= '' then
-    Script.deregister(opcuaServer_Model.parameters.registerEvent, processData)
-    opcuaServer_Model.parameters.registerEvent = ''
-    Script.notifyEvent("OPCUAServer_OnNewStatusEventToRegister", opcuaServer_Model.parameters.registerEvent)
-  end
-end
-opcuaServer_Model.deregisterFromEvent = deregisterFromEvent
-]]
 
 --*************************************************************************
 --********************** End Function Scope *******************************

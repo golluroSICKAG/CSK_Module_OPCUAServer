@@ -50,9 +50,11 @@ local function createCustomJsonList(contentA, namespaceIndex, selectedParam)
   local entries = false
 
   local rootNodeData
-  for rootKey, __ in pairs(contentA.nodes[namespaceIndex]) do
-    rootNodeData = contentA.nodes[namespaceIndex][rootKey]
-    break
+  if contentA.nodes[namespaceIndex] then
+    for rootKey, __ in pairs(contentA.nodes[namespaceIndex]) do
+      rootNodeData = contentA.nodes[namespaceIndex][rootKey]
+      break
+    end
   end
 
   if rootNodeData then

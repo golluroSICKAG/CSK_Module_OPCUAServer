@@ -20,7 +20,7 @@ local opcuaServer_Model
 
 -- ************************ UI Events Start ********************************
 
---Script.serveEvent('CSK_OPCUAServer.OnNewResult', 'OPCUAServer_OnNewResult')
+Script.serveEvent('CSK_OPCUAServer.OnNewValueUpdate_NAMESPACE_NODEID', 'OPCUAServer_OnNewValueUpdate_NAMESPACE_NODEID')
 
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusModuleVersion', 'OPCUAServer_OnNewStatusModuleVersion')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusCSKStyle', 'OPCUAServer_OnNewStatusCSKStyle')
@@ -30,7 +30,6 @@ Script.serveEvent('CSK_OPCUAServer.OnNewStatusEventToRegister', 'OPCUAServer_OnN
 
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusServerIsCurrentlyActive', 'OPCUAServer_OnNewStatusServerIsCurrentlyActive')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusServerActive', 'OPCUAServer_OnNewStatusServerActive')
-
 
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusInterfaceList', 'OPCUAServer_OnNewStatusInterfaceList')
 
@@ -48,35 +47,24 @@ Script.serveEvent('CSK_OPCUAServer.OnNewStatusNamespaceExists', 'OPCUAServer_OnN
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNamespaceList', 'OPCUAServer_OnNewStatusNamespaceList')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusSelectedNamespace', 'OPCUAServer_OnNewStatusSelectedNamespace')
 
---Script.serveEvent('CSK_OPCUAServer.OnNewStatusNamespace', 'OPCUAServer_OnNewStatusNamespace')
-
---Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeTypeDefinition', 'OPCUAServer_OnNewStatusNodeTypeDefinition')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeID', 'OPCUAServer_OnNewStatusNodeID')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeIDType', 'OPCUAServer_OnNewStatusNodeIDType')
 
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeType', 'OPCUAServer_OnNewStatusNodeType')
 
---Script.serveEvent('CSK_OPCUAServer.OnNewStatusIsRootNode', 'OPCUAServer_OnNewStatusIsRootNode')
-
-
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeReferenceList', 'OPCUAServer_OnNewStatusNodeReferenceList')
-
 
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeReference', 'OPCUAServer_OnNewStatusNodeReference')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeReferenceType', 'OPCUAServer_OnNewStatusNodeReferenceType')
 
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeHasReference', 'OPCUAServer_OnNewStatusNodeHasReference')
 
-
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeClass', 'OPCUAServer_OnNewStatusNodeClass')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeDataType', 'OPCUAServer_OnNewStatusNodeDataType')
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusNodeAccessLevel', 'OPCUAServer_OnNewStatusNodeAccessLevel')
 
-
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusAllNodesList', 'OPCUAServer_OnNewStatusAllNodesList')
-
-
-
+Script.serveEvent('CSK_OPCUAServer.OnNewStatusCurrentNodeValue', 'OPCUAServer_OnNewStatusCurrentNodeValue')
 
 Script.serveEvent('CSK_OPCUAServer.OnNewStatusFlowConfigPriority', 'OPCUAServer_OnNewStatusFlowConfigPriority')
 Script.serveEvent("CSK_OPCUAServer.OnNewStatusLoadParameterOnReboot", "OPCUAServer_OnNewStatusLoadParameterOnReboot")
@@ -180,11 +168,10 @@ local function handleOnExpiredTmrOPCUAServer()
   Script.notifyEvent('OPCUAServer_OnNewStatusSelectedNamespace', opcuaServer_Model.selectedNamespace)
 
   Script.notifyEvent('OPCUAServer_OnNewStatusNamespaceIndex', opcuaServer_Model.selectedNamespaceIndex)
-  Script.notifyEvent('OPCUAServer_OnNewStatusNamespaceURL', opcuaServer_Model.selectedNamespaceURI)
+  Script.notifyEvent('OPCUAServer_OnNewStatusNamespaceURL', opcuaServer_Model.selectedNamespaceURL)
 
   Script.notifyEvent('OPCUAServer_OnNewStatusNodeType', opcuaServer_Model.currentNodeType)
-  --Script.notifyEvent('OPCUAServer_OnNewStatusNodeTypeDefinition', opcuaServer_Model.currentNodeTypeDefinition)
-  --Script.notifyEvent('OPCUAServer_OnNewStatusIsRootNode', opcuaServer_Model.currentNodeIsRootNode)
+
   Script.notifyEvent('OPCUAServer_OnNewStatusNodeReferenceList', opcuaServer_Model.helperFuncs.createJsonList(opcuaServer_Model.nodeReferences))
   Script.notifyEvent('OPCUAServer_OnNewStatusNodeReference', opcuaServer_Model.currentNodeReference)
 
@@ -202,15 +189,14 @@ local function handleOnExpiredTmrOPCUAServer()
   Script.notifyEvent('OPCUAServer_OnNewStatusNodeAccessLevel', opcuaServer_Model.currentNodeAccessLevel)
 
   Script.notifyEvent('OPCUAServer_OnNewStatusAllNodesList', opcuaServer_Model.helperFuncs.createCustomJsonList(opcuaServer_Model.parameters.namespaces, opcuaServer_Model.selectedNamespace, ''))
+  Script.notifyEvent("OPCUAServer_OnNewStatusCurrentNodeValue", '')
 
-  -- TODO Reference
   Script.notifyEvent("OPCUAServer_OnNewStatusEventToRegister", opcuaServer_Model.currentEventToRegister)
 
   Script.notifyEvent("OPCUAServer_OnNewStatusFlowConfigPriority", opcuaServer_Model.parameters.flowConfigPriority)
   Script.notifyEvent("OPCUAServer_OnNewStatusLoadParameterOnReboot", opcuaServer_Model.parameterLoadOnReboot)
   Script.notifyEvent("OPCUAServer_OnPersistentDataModuleAvailable", opcuaServer_Model.persistentModuleAvailable)
   Script.notifyEvent("OPCUAServer_OnNewParameterName", opcuaServer_Model.parametersName)
-  -- ...
 end
 Timer.register(tmrOPCUAServer, "OnExpired", handleOnExpiredTmrOPCUAServer)
 
@@ -247,10 +233,35 @@ local function setApplicationURI(uri)
 end
 Script.serveFunction('CSK_OPCUAServer.setApplicationURI', setApplicationURI)
 
---TODO
-local function setNamespace(name)
-  
+local function updateReferences(node)
+  for nodeKey, nodeValue in pairs(node) do
+    if nodeValue.id then
+      opcuaServer_Model.listOfNodeIDs[nodeValue.id] = nodeValue.id
+    end
+    if nodeValue.class == 'OBJECT' then
+      opcuaServer_Model.nodeReferences[nodeValue.id] = nodeValue.id
+    end
+    if nodeValue.nodes then
+      updateReferences(nodeValue.nodes)
+    end
+  end
 end
+
+local function setSelectedNamespace(name)
+  if opcuaServer_Model.parameters.namespaces.names[name] then
+    _G.logger:fine(nameOfModule .. ": Select namespace " .. name)
+    opcuaServer_Model.selectedNamespace = name
+
+    opcuaServer_Model.nodeReferences = {}
+    opcuaServer_Model.listOfNodeIDs = {}
+    updateReferences(opcuaServer_Model.parameters.namespaces.nodes[name])
+
+  else
+    _G.logger:info(nameOfModule .. ": Namespace " .. name .. " does not exist.")
+  end
+  handleOnExpiredTmrOPCUAServer()
+end
+Script.serveFunction('CSK_OPCUAServer.setSelectedNamespace', setSelectedNamespace)
 
 local function setNamespaceIndex(index)
   _G.logger:fine(nameOfModule .. ": Set namespace index to: " .. tostring(index))
@@ -260,7 +271,10 @@ Script.serveFunction('CSK_OPCUAServer.setNamespaceIndex', setNamespaceIndex)
 
 local function setNamespaceURL(url)
   _G.logger:fine(nameOfModule .. ": Set namespace URL to: " .. tostring(url))
-  opcuaServer_Model.selectedNamespaceURI = url
+  opcuaServer_Model.selectedNamespaceURL = url
+  if opcuaServer_Model.parameters.namespaces.urls[opcuaServer_Model.selectedNamespace] then
+    opcuaServer_Model.parameters.namespaces.urls[opcuaServer_Model.selectedNamespace] = url
+  end
 end
 Script.serveFunction('CSK_OPCUAServer.setNamespaceURL', setNamespaceURL)
 
@@ -271,32 +285,46 @@ local function addNamespaceViaUI()
     opcuaServer_Model.selectedNamespace = namespaceName
     opcuaServer_Model.parameters.namespaces.names[namespaceName] = opcuaServer_Model.selectedNamespace
     opcuaServer_Model.parameters.namespaces.indexes[namespaceName] = opcuaServer_Model.selectedNamespaceIndex
-    opcuaServer_Model.parameters.namespaces.urls[namespaceName] = ''
+    opcuaServer_Model.parameters.namespaces.urls[namespaceName] = opcuaServer_Model.selectedNamespaceURL
     opcuaServer_Model.parameters.namespaces.nodes[namespaceName] = {}
 
-    Script.notifyEvent('OPCUAServer_OnNewStatusNamespaceExists', true)
-    Script.notifyEvent('OPCUAServer_OnNewStatusNamespaceList', opcuaServer_Model.helperFuncs.createJsonList(opcuaServer_Model.parameters.namespaces.names))
-    Script.notifyEvent('OPCUAServer_OnNewStatusSelectedNamespace', opcuaServer_Model.selectedNamespace)
+    opcuaServer_Model.nodeReferences = {}
+    opcuaServer_Model.listOfNodeIDs = {}
+    updateReferences(opcuaServer_Model.parameters.namespaces.nodes[namespaceName])
+
+    opcuaServer_Model.currentNodeClass = 'OBJECT'
+
+    handleOnExpiredTmrOPCUAServer()
   else
     _G.logger:warning(nameOfModule .. ": Namespace already exists! Choose other ID.")
   end
 end
 Script.serveFunction('CSK_OPCUAServer.addNamespaceViaUI', addNamespaceViaUI)
 
---TODO
---[[
-local function setIsRootNode(status)
-  _G.logger:fine(nameOfModule .. ": Is root node: " .. tostring(status))
-  opcuaServer_Model.currentNodeIsRootNode = status
-end
-Script.serveFunction('CSK_OPCUAServer.setIsRootNode', setIsRootNode)
-]]
+local function deleteNamespaceViaUI()
+  local namespaceName = 'NamespaceID_' .. tostring(opcuaServer_Model.selectedNamespaceIndex)
+  if opcuaServer_Model.parameters.namespaces.names[namespaceName] then
+    _G.logger:info(nameOfModule .. ": Delete namespace: " .. namespaceName)
 
---local function setNodeTypeDefinition(nodeType)
-  --_G.logger:fine(nameOfModule .. ": Set node type definition to: " .. tostring(nodeType))
-  --opcuaServer_Model.currentNodeTypeDefinition = nodeType
---end
---Script.serveFunction('CSK_OPCUAServer.setNodeTypeDefinition', setNodeTypeDefinition)
+    opcuaServer_Model.parameters.namespaces.names[namespaceName] = nil
+    opcuaServer_Model.parameters.namespaces.indexes[namespaceName] = nil
+    opcuaServer_Model.parameters.namespaces.urls[namespaceName] = nil
+    opcuaServer_Model.parameters.namespaces.nodes[namespaceName] = nil
+
+    collectgarbage()
+
+    opcuaServer_Model.selectedNamespace = ''
+    for key, __ in pairs(opcuaServer_Model.parameters.namespaces.names) do
+      opcuaServer_Model.selectedNamespace = key
+      break
+    end
+
+    handleOnExpiredTmrOPCUAServer()
+  else
+    _G.logger:info(nameOfModule .. ": Namespace to delete does not exist.")
+  end
+end
+Script.serveFunction('CSK_OPCUAServer.deleteNamespaceViaUI', deleteNamespaceViaUI)
 
 local function setNodeClass(class)
   _G.logger:fine(nameOfModule .. ": Set node class to: " .. tostring(class))
@@ -308,26 +336,6 @@ Script.serveFunction('CSK_OPCUAServer.setNodeClass', setNodeClass)
 local function setNodeType(nodeType)
   _G.logger:fine(nameOfModule .. ": Set node type definition to: " .. tostring(nodeType))
   opcuaServer_Model.currentNodeType = nodeType
-  --[[
-  _G.logger:fine(nameOfModule .. ": Set node type to: " .. tostring(nodeType))
-  opcuaServer_Model.currentNodeType = nodeType
-  if nodeType == 'ROOT' then
-    --setIsRootNode(true)
-    --opcuaServer_Model.currentNodeIsRootNode = true
-    --opcuaServer_Model.currentNodeID = 'RootID'
-    --setNodeClass('OBJECT')
-    Script.notifyEvent('OPCUAServer_OnNewStatusNodeClass', opcuaServer_Model.currentNodeClass)
-    Script.notifyEvent('OPCUAServer_OnNewStatusNodeID', opcuaServer_Model.currentNodeID)
-  else
-    --setIsRootNode(false)
-    opcuaServer_Model.currentNodeIsRootNode = false
-    opcuaServer_Model.currentNodeID = 'NodeID'
-    setNodeClass('VARIABLE')
-    Script.notifyEvent('OPCUAServer_OnNewStatusNodeClass', opcuaServer_Model.currentNodeClass)
-    Script.notifyEvent('OPCUAServer_OnNewStatusNodeID', opcuaServer_Model.currentNodeID)
-  end
-  Script.notifyEvent('OPCUAServer_OnNewStatusNodeType', opcuaServer_Model.currentNodeType)
-]]
 end
 Script.serveFunction('CSK_OPCUAServer.setNodeType', setNodeType)
 
@@ -430,6 +438,7 @@ local function addNodeViaUI()
         newNode.nodes = {}
       else
         newNode.registeredEvent = opcuaServer_Model.currentEventToRegister
+        newNode.valueUpdateEvent = 'OPCUAServer_OnNewValueUpdate_'  .. opcuaServer_Model.selectedNamespace .. '_' .. opcuaServer_Model.currentNodeID
       end
 
       if rootExists then
@@ -509,6 +518,7 @@ end
 Script.serveFunction('CSK_OPCUAServer.setServerActive', setServerActive)
 
 local tempResult = {}
+
 local function searchForSubValue(selection)
   local foundPosStart, foundPosEnd = string.find(selection, ' // ')
   if foundPosStart then
@@ -522,6 +532,7 @@ local function searchForSubValue(selection)
 end
 
 local function selectNodeViaUI(selection)
+  Script.notifyEvent('OPCUAServer_OnNewStatusCurrentNodeValue', '')
   local _, foundFullNode = string.find(selection, '"DTC_Node":"')
   if foundFullNode then
     local foundEndOfFullNode = string.find(selection, '"', foundFullNode+1)
@@ -555,6 +566,13 @@ local function selectNodeViaUI(selection)
         opcuaServer_Model.currentNodeDataType = selectedNode.dataType
         opcuaServer_Model.currentNodeAccessLevel = selectedNode.accessLevel
         opcuaServer_Model.currentEventToRegister = selectedNode.registeredEvent
+
+        if opcuaServer_Model.currentNodes[opcuaServer_Model.selectedNamespace] then
+          if opcuaServer_Model.currentNodes[opcuaServer_Model.selectedNamespace][opcuaServer_Model.currentNodeID] then
+            local currentNodeValue =  opcuaServer_Model.currentNodes[opcuaServer_Model.selectedNamespace][opcuaServer_Model.currentNodeID]:getValue()
+            Script.notifyEvent('OPCUAServer_OnNewStatusCurrentNodeValue', "Value of node '" .. tostring(opcuaServer_Model.currentNodeID) .. "' = " .. tostring(currentNodeValue))
+          end
+        end
       end
 
       Script.notifyEvent('OPCUAServer_OnNewStatusNodeReference', opcuaServer_Model.currentNodeReference)
@@ -594,6 +612,9 @@ Script.serveFunction('CSK_OPCUAServer.getStatusModuleActive', getStatusModuleAct
 
 local function clearFlowConfigRelevantConfiguration()
   -- Insert code here to clear FlowConfig relevant actions
+  if opcuaServer_Model.isActive then
+    setServerActive(false)
+  end
   --opcuaServer_Model.deregisterFromEvent()
 end
 Script.serveFunction('CSK_OPCUAServer.clearFlowConfigRelevantConfiguration', clearFlowConfigRelevantConfiguration)
@@ -634,9 +655,18 @@ local function loadParameters()
       clearFlowConfigRelevantConfiguration()
       _G.logger:info(nameOfModule .. ": Loaded parameters from CSK_PersistentData module.")
       opcuaServer_Model.parameters = opcuaServer_Model.helperFuncs.convertContainer2Table(data)
-      -- If something needs to be configured/activated with new loaded data, place this here:
-      -- ...
-      -- ...
+
+      local tempNamespace
+      for nameKey, _ in pairs(opcuaServer_Model.parameters.namespaces.names) do
+        tempNamespace = nameKey
+      end
+      if tempNamespace ~= nil then
+        setSelectedNamespace(tempNamespace)
+      end
+
+      if opcuaServer_Model.parameters.active then
+        setServerActive(true)
+      end
 
       CSK_OPCUAServer.pageCalled()
       return true

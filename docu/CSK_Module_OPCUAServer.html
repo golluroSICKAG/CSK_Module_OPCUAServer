@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.12">
 <meta name="author" content="SICK AG">
-<title>Documentation - CSK_Module_OPCUAServer 0.1.0</title>
+<title>Documentation - CSK_Module_OPCUAServer 0.2.0</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 /* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
@@ -615,11 +615,11 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Documentation - CSK_Module_OPCUAServer 0.1.0</h1>
+<h1>Documentation - CSK_Module_OPCUAServer 0.2.0</h1>
 <div class="details">
 <span id="author" class="author">SICK AG</span><br>
-<span id="revnumber">version 0.1.0,</span>
-<span id="revdate">2025-02-20</span>
+<span id="revnumber">version 0.2.0,</span>
+<span id="revdate">2025-03-10</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -639,30 +639,75 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 <li><a href="#_overview_2">Overview</a></li>
 <li><a href="#_functions">Functions</a>
 <ul class="sectlevel4">
+<li><a href="#API:Function:CSK_OPCUAServer.addNamespaceViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">addNamespaceViaUI()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.addNodeViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">addNodeViaUI()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.clearFlowConfigRelevantConfiguration"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">clearFlowConfigRelevantConfiguration()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.deleteNamespaceViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">deleteNamespaceViaUI()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.deleteNodeViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">deleteNodeViaUI()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.getParameters"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">getParameters()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.getStatusModuleActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">getStatusModuleActive()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.loadParameters"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">loadParameters()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.pageCalled"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">pageCalled()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.resetModule"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">resetModule()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.selectNodeViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">selectNodeViaUI()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.sendParameters"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">sendParameters()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setApplicationName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setApplicationName()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setApplicationURI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setApplicationURI()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.setEventToRegister"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setEventToRegister()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.setFlowConfigPriority"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setFlowConfigPriority()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setInterface"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setInterface()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.setLoadOnReboot"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setLoadOnReboot()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNamespaceIndex"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNamespaceIndex()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNamespaceURL"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNamespaceURL()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeAccessLevel"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeAccessLevel()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeClass"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeClass()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeDataType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeDataType()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeID"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeID()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeIDType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeIDType()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeReference"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeReference()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeReferenceType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeReferenceType()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setNodeType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeType()</span></a></li>
 <li><a href="#API:Function:CSK_OPCUAServer.setParameterName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setParameterName()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setPort"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setPort()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setSelectedNamespace"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setSelectedNamespace()</span></a></li>
+<li><a href="#API:Function:CSK_OPCUAServer.setServerActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setServerActive()</span></a></li>
 </ul>
 </li>
 <li><a href="#_events">Events</a>
 <ul class="sectlevel4">
 <li><a href="#API:Event:CSK_OPCUAServer.OnDataLoadedOnReboot"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnDataLoadedOnReboot</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnNewParameterName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewParameterName</span></a></li>
-<li><a href="#API:Event:CSK_OPCUAServer.OnNewResult"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewResult</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusAllNodesList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusAllNodesList</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusApplicationName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusApplicationName</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusApplicationURI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusApplicationURI</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusCSKStyle"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusCSKStyle</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusCurrentNodeValue"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusCurrentNodeValue</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusEventToRegister"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusEventToRegister</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusFlowConfigPriority"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusFlowConfigPriority</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusInterface"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusInterface</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusInterfaceList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusInterfaceList</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusLoadParameterOnReboot"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusLoadParameterOnReboot</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusModuleIsActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusModuleIsActive</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusModuleVersion"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusModuleVersion</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceExists"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceExists</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceIndex"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceIndex</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceList</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceURL"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceURL</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeAccessLevel"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeAccessLevel</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeClass"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeClass</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeDataType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeDataType</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeHasReference"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeHasReference</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeID"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeID</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeIDType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeIDType</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeReference"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeReference</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeReferenceList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeReferenceList</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeReferenceType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeReferenceType</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeType</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusPort"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusPort</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusSelectedNamespace"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusSelectedNamespace</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusServerActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusServerActive</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewStatusServerIsCurrentlyActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusServerIsCurrentlyActive</span></a></li>
+<li><a href="#API:Event:CSK_OPCUAServer.OnNewValueUpdate_NAMESPACE_NODEID"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewValueUpdate_NAMESPACE_NODEID</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnPersistentDataModuleAvailable"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnPersistentDataModuleAvailable</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnUserLevelAdminActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelAdminActive</span></a></li>
 <li><a href="#API:Event:CSK_OPCUAServer.OnUserLevelMaintenanceActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelMaintenanceActive</span></a></li>
@@ -674,13 +719,13 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </li>
 <li><a href="#API:Crown:OPCUAServer_FC"><span class="api-crown">OPCUAServer_FC</span></a>
 <ul class="sectlevel3">
-<li><a href="#_short_description_28">Short description</a></li>
+<li><a href="#_short_description_73">Short description</a></li>
 <li><a href="#_overview_3">Overview</a></li>
 </ul>
 </li>
 <li><a href="#API:Crown:OPCUAServer_FC.Consumer"><span class="api-crown">OPCUAServer_FC.Consumer</span></a>
 <ul class="sectlevel3">
-<li><a href="#_short_description_29">Short description</a></li>
+<li><a href="#_short_description_74">Short description</a></li>
 <li><a href="#_overview_4">Overview</a></li>
 <li><a href="#_functions_2">Functions</a>
 <ul class="sectlevel4">
@@ -692,7 +737,7 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </li>
 <li><a href="#API:Crown:OPCUAServer_FC.Process"><span class="api-crown">OPCUAServer_FC.Process</span></a>
 <ul class="sectlevel3">
-<li><a href="#_short_description_32">Short description</a></li>
+<li><a href="#_short_description_77">Short description</a></li>
 <li><a href="#_overview_5">Overview</a></li>
 <li><a href="#_functions_3">Functions</a>
 <ul class="sectlevel4">
@@ -704,7 +749,7 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </li>
 <li><a href="#API:Crown:OPCUAServer_FC.Provider"><span class="api-crown">OPCUAServer_FC.Provider</span></a>
 <ul class="sectlevel3">
-<li><a href="#_short_description_35">Short description</a></li>
+<li><a href="#_short_description_80">Short description</a></li>
 <li><a href="#_overview_6">Overview</a></li>
 <li><a href="#_functions_4">Functions</a>
 <ul class="sectlevel4">
@@ -745,11 +790,11 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Version</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Date</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2025-02-20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2025-03-10</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock">Author</p></th>
@@ -816,14 +861,24 @@ h1,h2,h3,h4,h5,h6{color:#007cc1}
 <div class="sect3">
 <h4 id="_short_description_2">Short description</h4>
 <div class="paragraph">
-<p>Please fill in information regarding: What is the idea of this module and its features?<br>
-How to use this module in general&#8230;&#8203;. like:<br>
-<br>
+<p>Module to provide OPC UA server functionality. Please check the OPCUA API docu of the device regarding further background information&#8230;&#8203;<br>
 Typically the features of this module are used like this (check also main script of this module):<br>
-<strong>1) Setup</strong><br>
-ToDo<br>
 <br>
-<strong>2) Something else&#8230;&#8203;</strong><br></p>
+<strong>1) Setup</strong><br>
+1) Set the interface and port via 'setInterface' and 'setPort'.<br>
+2) Optionally set application name and URI (see 'setApplicationName' and 'setApplicationURI')<br>
+3) Set a namespace index (starting with 2) and optionally a namepsace URL (see 'setNamespaceIndex' and 'setNamespaceURL').<br>
+4) Call 'addNamespaceViaUI' to create a namespace.<br>
+<br>
+<strong>2) Nodes</strong><br>
+It is possible to create nodes within the currently selected namespace.<br>
+1) Select a class for the node ('setNodeClass') and the node ID type and its ID ('setNodeIDType', 'setNodeID').<br>
+2) Via 'setNodeReference' and 'setNodeReferenceType' it is possible to configure the references of the node.<br>
+3) Via 'setNodeType' (e.g. for nodes of class OBJECT) or 'setNodeDataType' / 'setNodeAccessLevel' (for nodes of class VARIABLE) further configuration can be done.<br>
+4) If a node is a VARIABLE it is possible to set an event to receive values to set for this node via 'setEventToRegister'.<br>
+5) Via 'addNodeViaUI' the preconfigured node can be added to the namespace.<br>
+6) If the node is of class VARIABLE it will create an event like 'CSK_OPUAServer.OnNewValueUpdate_NAMESPACE_NODEID' to notify if the value of the node was written by the client. Other applications can register on these events.<br>
+<br></p>
 </div>
 </div>
 <div class="sect3">
@@ -831,7 +886,19 @@ ToDo<br>
 <div class="ulist">
 <ul>
 <li>
+<p><a href="#API:Function:CSK_OPCUAServer.addNamespaceViaUI">addNamespaceViaUI()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.addNodeViaUI">addNodeViaUI()</a></p>
+</li>
+<li>
 <p><a href="#API:Function:CSK_OPCUAServer.clearFlowConfigRelevantConfiguration">clearFlowConfigRelevantConfiguration()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.deleteNamespaceViaUI">deleteNamespaceViaUI()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.deleteNodeViaUI">deleteNodeViaUI()</a></p>
 </li>
 <li>
 <p><a href="#API:Function:CSK_OPCUAServer.getParameters">getParameters()</a></p>
@@ -849,7 +916,16 @@ ToDo<br>
 <p><a href="#API:Function:CSK_OPCUAServer.resetModule">resetModule()</a></p>
 </li>
 <li>
+<p><a href="#API:Function:CSK_OPCUAServer.selectNodeViaUI">selectNodeViaUI()</a></p>
+</li>
+<li>
 <p><a href="#API:Function:CSK_OPCUAServer.sendParameters">sendParameters()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setApplicationName">setApplicationName()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setApplicationURI">setApplicationURI()</a></p>
 </li>
 <li>
 <p><a href="#API:Function:CSK_OPCUAServer.setEventToRegister">setEventToRegister()</a></p>
@@ -858,10 +934,52 @@ ToDo<br>
 <p><a href="#API:Function:CSK_OPCUAServer.setFlowConfigPriority">setFlowConfigPriority()</a></p>
 </li>
 <li>
+<p><a href="#API:Function:CSK_OPCUAServer.setInterface">setInterface()</a></p>
+</li>
+<li>
 <p><a href="#API:Function:CSK_OPCUAServer.setLoadOnReboot">setLoadOnReboot()</a></p>
 </li>
 <li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNamespaceIndex">setNamespaceIndex()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNamespaceURL">setNamespaceURL()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeAccessLevel">setNodeAccessLevel()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeClass">setNodeClass()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeDataType">setNodeDataType()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeID">setNodeID()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeIDType">setNodeIDType()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeReference">setNodeReference()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeReferenceType">setNodeReferenceType()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setNodeType">setNodeType()</a></p>
+</li>
+<li>
 <p><a href="#API:Function:CSK_OPCUAServer.setParameterName">setParameterName()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setPort">setPort()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setSelectedNamespace">setSelectedNamespace()</a></p>
+</li>
+<li>
+<p><a href="#API:Function:CSK_OPCUAServer.setServerActive">setServerActive()</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_OPCUAServer.OnDataLoadedOnReboot">OnDataLoadedOnReboot</a></p>
@@ -870,16 +988,31 @@ ToDo<br>
 <p><a href="#API:Event:CSK_OPCUAServer.OnNewParameterName">OnNewParameterName</a></p>
 </li>
 <li>
-<p><a href="#API:Event:CSK_OPCUAServer.OnNewResult">OnNewResult</a></p>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusAllNodesList">OnNewStatusAllNodesList</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusApplicationName">OnNewStatusApplicationName</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusApplicationURI">OnNewStatusApplicationURI</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusCSKStyle">OnNewStatusCSKStyle</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusCurrentNodeValue">OnNewStatusCurrentNodeValue</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusEventToRegister">OnNewStatusEventToRegister</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusFlowConfigPriority">OnNewStatusFlowConfigPriority</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusInterface">OnNewStatusInterface</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusInterfaceList">OnNewStatusInterfaceList</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusLoadParameterOnReboot">OnNewStatusLoadParameterOnReboot</a></p>
@@ -889,6 +1022,63 @@ ToDo<br>
 </li>
 <li>
 <p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusModuleVersion">OnNewStatusModuleVersion</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceExists">OnNewStatusNamespaceExists</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceIndex">OnNewStatusNamespaceIndex</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceList">OnNewStatusNamespaceList</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNamespaceURL">OnNewStatusNamespaceURL</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeAccessLevel">OnNewStatusNodeAccessLevel</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeClass">OnNewStatusNodeClass</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeDataType">OnNewStatusNodeDataType</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeHasReference">OnNewStatusNodeHasReference</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeID">OnNewStatusNodeID</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeIDType">OnNewStatusNodeIDType</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeReference">OnNewStatusNodeReference</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeReferenceList">OnNewStatusNodeReferenceList</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeReferenceType">OnNewStatusNodeReferenceType</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusNodeType">OnNewStatusNodeType</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusPort">OnNewStatusPort</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusSelectedNamespace">OnNewStatusSelectedNamespace</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusServerActive">OnNewStatusServerActive</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewStatusServerIsCurrentlyActive">OnNewStatusServerIsCurrentlyActive</a></p>
+</li>
+<li>
+<p><a href="#API:Event:CSK_OPCUAServer.OnNewValueUpdate_NAMESPACE_NODEID">OnNewValueUpdate_NAMESPACE_NODEID</a></p>
 </li>
 <li>
 <p><a href="#API:Event:CSK_OPCUAServer.OnPersistentDataModuleAvailable">OnPersistentDataModuleAvailable</a></p>
@@ -911,15 +1101,49 @@ ToDo<br>
 <div class="sect3">
 <h4 id="_functions">Functions</h4>
 <div class="sect4">
-<h5 id="API:Function:CSK_OPCUAServer.clearFlowConfigRelevantConfiguration"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">clearFlowConfigRelevantConfiguration()</span></h5>
+<h5 id="API:Function:CSK_OPCUAServer.addNamespaceViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">addNamespaceViaUI()</span></h5>
 <div class="sect5">
 <h6 id="_short_description_3">Short description</h6>
+<div class="paragraph">
+<p>Function to add a namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.addNamespaceViaUI()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.addNodeViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">addNodeViaUI()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_4">Short description</h6>
+<div class="paragraph">
+<p>Function to add preconfigured node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_2">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.addNodeViaUI()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.clearFlowConfigRelevantConfiguration"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">clearFlowConfigRelevantConfiguration()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_5">Short description</h6>
 <div class="paragraph">
 <p>Function to clear FlowConfig relevant configurations.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_3">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.clearFlowConfigRelevantConfiguration()</code></pre>
@@ -928,9 +1152,43 @@ ToDo<br>
 </div>
 </div>
 <div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.deleteNamespaceViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">deleteNamespaceViaUI()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_6">Short description</h6>
+<div class="paragraph">
+<p>Function to delete preselected namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_4">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.deleteNamespaceViaUI()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.deleteNodeViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">deleteNodeViaUI()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_7">Short description</h6>
+<div class="paragraph">
+<p>Function to delete currently selected node via UI.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_5">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.deleteNodeViaUI()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.getParameters"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">getParameters()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_4">Short description</h6>
+<h6 id="_short_description_8">Short description</h6>
 <div class="paragraph">
 <p>Function to get all parameters of the client in JSON format.</p>
 </div>
@@ -963,7 +1221,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_2">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_6">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">jsonParameters = CSK_OPCUAServer.getParameters()</code></pre>
@@ -974,7 +1232,7 @@ ToDo<br>
 <div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.getStatusModuleActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">getStatusModuleActive()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_5">Short description</h6>
+<h6 id="_short_description_9">Short description</h6>
 <div class="paragraph">
 <p>Function to get status if module is active.</p>
 </div>
@@ -1007,7 +1265,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_3">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_7">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">status = CSK_OPCUAServer.getStatusModuleActive()</code></pre>
@@ -1018,7 +1276,7 @@ ToDo<br>
 <div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.loadParameters"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">loadParameters()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_6">Short description</h6>
+<h6 id="_short_description_10">Short description</h6>
 <div class="paragraph">
 <p>Load parameters for this module from the CSK_PersistentData module if possible and use them.</p>
 </div>
@@ -1051,7 +1309,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_4">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_8">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">success = CSK_OPCUAServer.loadParameters()</code></pre>
@@ -1062,7 +1320,7 @@ ToDo<br>
 <div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.pageCalled"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">pageCalled()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_7">Short description</h6>
+<h6 id="_short_description_11">Short description</h6>
 <div class="paragraph">
 <p>Function to register "OnResume" of the module UI (only as helper function).</p>
 </div>
@@ -1095,7 +1353,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_5">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_9">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">empty = CSK_OPCUAServer.pageCalled()</code></pre>
@@ -1106,13 +1364,13 @@ ToDo<br>
 <div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.resetModule"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">resetModule()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_8">Short description</h6>
+<h6 id="_short_description_12">Short description</h6>
 <div class="paragraph">
 <p>Function to reset main configuration of module.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_6">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_10">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.resetModule()</code></pre>
@@ -1121,15 +1379,59 @@ ToDo<br>
 </div>
 </div>
 <div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.selectNodeViaUI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">selectNodeViaUI()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_13">Short description</h6>
+<div class="paragraph">
+<p>Function to select specific node within UI table.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">selection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selection</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_11">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.selectNodeViaUI(selection)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.sendParameters"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">sendParameters()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_9">Short description</h6>
+<h6 id="_short_description_14">Short description</h6>
 <div class="paragraph">
 <p>Send parameters to CSK_PersistentData module if possible to save them.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters">Parameters</h6>
+<h6 id="_parameters_2">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1156,7 +1458,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_7">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_12">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.sendParameters(noDataSave)</code></pre>
@@ -1165,15 +1467,103 @@ ToDo<br>
 </div>
 </div>
 <div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setApplicationName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setApplicationName()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_15">Short description</h6>
+<div class="paragraph">
+<p>Function to set application name.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_3">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of application.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_13">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setApplicationName(name)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setApplicationURI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setApplicationURI()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_16">Short description</h6>
+<div class="paragraph">
+<p>Function to set URL of application.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_4">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uri</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URI</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_14">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setApplicationURI(uri)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.setEventToRegister"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setEventToRegister()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_10">Short description</h6>
+<h6 id="_short_description_17">Short description</h6>
 <div class="paragraph">
 <p>Function to set event to receive data.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_2">Parameters</h6>
+<h6 id="_parameters_5">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1200,7 +1590,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_8">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_15">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setEventToRegister(event)</code></pre>
@@ -1211,13 +1601,13 @@ ToDo<br>
 <div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.setFlowConfigPriority"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setFlowConfigPriority()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_11">Short description</h6>
+<h6 id="_short_description_18">Short description</h6>
 <div class="paragraph">
 <p>Function to configure if FlowConfig should have priority for FlowConfig relevant configuration.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_3">Parameters</h6>
+<h6 id="_parameters_6">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1244,7 +1634,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_9">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_16">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setFlowConfigPriority(status)</code></pre>
@@ -1253,15 +1643,59 @@ ToDo<br>
 </div>
 </div>
 <div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setInterface"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setInterface()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_19">Short description</h6>
+<div class="paragraph">
+<p>Function to set interface to use for OPC UA server.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_7">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_17">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setInterface(interface)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.setLoadOnReboot"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setLoadOnReboot()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_12">Short description</h6>
+<h6 id="_short_description_20">Short description</h6>
 <div class="paragraph">
 <p>Configure if this module should load its saved parameters at app/device boot up.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_4">Parameters</h6>
+<h6 id="_parameters_8">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1288,7 +1722,7 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_10">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_18">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setLoadOnReboot(status)</code></pre>
@@ -1297,15 +1731,455 @@ ToDo<br>
 </div>
 </div>
 <div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNamespaceIndex"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNamespaceIndex()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_21">Short description</h6>
+<div class="paragraph">
+<p>Function to set index of namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_9">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">index</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Index</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_19">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNamespaceIndex(index)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNamespaceURL"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNamespaceURL()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_22">Short description</h6>
+<div class="paragraph">
+<p>Function to set URL of namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_10">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_20">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNamespaceURL(url)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeAccessLevel"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeAccessLevel()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_23">Short description</h6>
+<div class="paragraph">
+<p>Function to set access level of node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_11">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">level</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acces level.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_21">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeAccessLevel(level)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeClass"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeClass()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_24">Short description</h6>
+<div class="paragraph">
+<p>Function to set class of node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_12">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Class</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_22">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeClass(class)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeDataType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeDataType()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_25">Short description</h6>
+<div class="paragraph">
+<p>Function to set data type of Node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_13">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dataType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_23">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeDataType(dataType)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeID"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeID()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_26">Short description</h6>
+<div class="paragraph">
+<p>Function to set ID of node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_14">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node ID.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_24">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeID(id)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeIDType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeIDType()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_27">Short description</h6>
+<div class="paragraph">
+<p>Function to set type of node ID.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_15">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">idType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of ID.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_25">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeIDType(idType)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeReference"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeReference()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_28">Short description</h6>
+<div class="paragraph">
+<p>Function to set optional node reference.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_16">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference node.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_26">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeReference(node)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeReferenceType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeReferenceType()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_29">Short description</h6>
+<div class="paragraph">
+<p>Function to set optional node reference type.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_17">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">refType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_27">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeReferenceType(refType)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setNodeType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setNodeType()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_30">Short description</h6>
+<div class="paragraph">
+<p>Function to set type of node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_18">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nodeType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type (ROOT or VARIABLE)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_28">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setNodeType(nodeType)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="API:Function:CSK_OPCUAServer.setParameterName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setParameterName()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_13">Short description</h6>
+<h6 id="_short_description_31">Short description</h6>
 <div class="paragraph">
 <p>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_5">Parameters</h6>
+<h6 id="_parameters_19">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1332,10 +2206,142 @@ ToDo<br>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_11">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_29">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setParameterName(name)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setPort"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setPort()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_32">Short description</h6>
+<div class="paragraph">
+<p>Function to set port for server.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_20">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_30">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setPort(port)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setSelectedNamespace"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setSelectedNamespace()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_33">Short description</h6>
+<div class="paragraph">
+<p>Function to select namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_21">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of namespace.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_31">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setSelectedNamespace(name)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Function:CSK_OPCUAServer.setServerActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-function">setServerActive()</span></h5>
+<div class="sect5">
+<h6 id="_short_description_34">Short description</h6>
+<div class="paragraph">
+<p>Function set activation status of OPC UA server.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_parameters_22">Parameters</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_32">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua">CSK_OPCUAServer.setServerActive(status)</code></pre>
 </div>
 </div>
 </div>
@@ -1346,13 +2352,13 @@ ToDo<br>
 <div class="sect4">
 <h5 id="API:Event:CSK_OPCUAServer.OnDataLoadedOnReboot"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnDataLoadedOnReboot</span></h5>
 <div class="sect5">
-<h6 id="_short_description_14">Short description</h6>
+<h6 id="_short_description_35">Short description</h6>
 <div class="paragraph">
 <p>Event to call if module tried to load parameters and should be ready.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_12">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_33">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnDataLoadedOnReboot</span>()
@@ -1367,7 +2373,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_OPCUAServer.OnNewParameterName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewParameterName</span></h5>
 <div class="sect5">
-<h6 id="_short_description_15">Short description</h6>
+<h6 id="_short_description_36">Short description</h6>
 <div class="paragraph">
 <p>Notify name of persistent data parameter.</p>
 </div>
@@ -1400,7 +2406,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_13">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_34">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewParameterName</span>(name)
@@ -1413,11 +2419,11 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnNewResult"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewResult</span></h5>
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusAllNodesList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusAllNodesList</span></h5>
 <div class="sect5">
-<h6 id="_short_description_16">Short description</h6>
+<h6 id="_short_description_37">Short description</h6>
 <div class="paragraph">
-<p>Notify new result&#8230;&#8203;</p>
+<p>Notify list of nodes.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1439,23 +2445,119 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">result</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AUTO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Result</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_14">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_35">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewResult</span>(result)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusAllNodesList</span>(list)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewResult</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewResult</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusAllNodesList</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusAllNodesList</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusApplicationName"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusApplicationName</span></h5>
+<div class="sect5">
+<h6 id="_short_description_38">Short description</h6>
+<div class="paragraph">
+<p>Notfiy application name.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_3">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application name.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_36">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusApplicationName</span>(name)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusApplicationName</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusApplicationName</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusApplicationURI"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusApplicationURI</span></h5>
+<div class="sect5">
+<h6 id="_short_description_39">Short description</h6>
+<div class="paragraph">
+<p>Notify URI of application.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_4">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uri</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application URI.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_37">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusApplicationURI</span>(uri)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusApplicationURI</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusApplicationURI</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
@@ -1463,13 +2565,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_OPCUAServer.OnNewStatusCSKStyle"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusCSKStyle</span></h5>
 <div class="sect5">
-<h6 id="_short_description_17">Short description</h6>
+<h6 id="_short_description_40">Short description</h6>
 <div class="paragraph">
 <p>Notify UI style to use for CSK modules.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_3">Callback arguments</h6>
+<h6 id="_callback_arguments_5">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1496,7 +2598,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_15">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_38">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusCSKStyle</span>(theme)
@@ -1509,15 +2611,63 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </div>
 </div>
 <div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusCurrentNodeValue"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusCurrentNodeValue</span></h5>
+<div class="sect5">
+<h6 id="_short_description_41">Short description</h6>
+<div class="paragraph">
+<p>Notify value of currently selected node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_6">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_39">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusCurrentNodeValue</span>(value)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusCurrentNodeValue</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusCurrentNodeValue</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
 <h5 id="API:Event:CSK_OPCUAServer.OnNewStatusEventToRegister"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusEventToRegister</span></h5>
 <div class="sect5">
-<h6 id="_short_description_18">Short description</h6>
+<h6 id="_short_description_42">Short description</h6>
 <div class="paragraph">
 <p>Notify event to register to and to process data.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_4">Callback arguments</h6>
+<h6 id="_callback_arguments_7">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1544,7 +2694,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_16">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_40">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusEventToRegister</span>(eventName)
@@ -1559,153 +2709,9 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Event:CSK_OPCUAServer.OnNewStatusFlowConfigPriority"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusFlowConfigPriority</span></h5>
 <div class="sect5">
-<h6 id="_short_description_19">Short description</h6>
+<h6 id="_short_description_43">Short description</h6>
 <div class="paragraph">
 <p>Notify if FlowConfig should have priority for FlowConfig relevant configurations.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_callback_arguments_5">Callback arguments</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_17">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusFlowConfigPriority</span>(status)
-  <span class="comment">-- Do something</span>
-<span class="keyword">end</span>
-
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusFlowConfigPriority</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusFlowConfigPriority</span><span class="delimiter">&quot;</span></span>)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusLoadParameterOnReboot"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusLoadParameterOnReboot</span></h5>
-<div class="sect5">
-<h6 id="_short_description_20">Short description</h6>
-<div class="paragraph">
-<p>Notify status if parameters should be loaded on app/device boot up.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_callback_arguments_6">Callback arguments</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_18">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusLoadParameterOnReboot</span>(status)
-  <span class="comment">-- Do something</span>
-<span class="keyword">end</span>
-
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusModuleIsActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusModuleIsActive</span></h5>
-<div class="sect5">
-<h6 id="_short_description_21">Short description</h6>
-<div class="paragraph">
-<p>Notify if module can be used on device.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_callback_arguments_7">Callback arguments</h6>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Multiplicity</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect5">
-<h6 id="_sample_auto_generated_19">Sample (auto-generated)</h6>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusModuleIsActive</span>(status)
-  <span class="comment">-- Do something</span>
-<span class="keyword">end</span>
-
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusModuleVersion"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusModuleVersion</span></h5>
-<div class="sect5">
-<h6 id="_short_description_22">Short description</h6>
-<div class="paragraph">
-<p>Notify version of module.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1727,33 +2733,33 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_20">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_41">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusModuleVersion</span>(version)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusFlowConfigPriority</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusModuleVersion</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusModuleVersion</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusFlowConfigPriority</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusFlowConfigPriority</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnPersistentDataModuleAvailable"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnPersistentDataModuleAvailable</span></h5>
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusInterface"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusInterface</span></h5>
 <div class="sect5">
-<h6 id="_short_description_23">Short description</h6>
+<h6 id="_short_description_44">Short description</h6>
 <div class="paragraph">
-<p>Notify status if features of CSK_PersistendData module are available.</p>
+<p>Notify interface to use for OPC UA server.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1775,33 +2781,33 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_21">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_42">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnPersistentDataModuleAvailable</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusInterface</span>(interface)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusInterface</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusInterface</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelAdminActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelAdminActive</span></h5>
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusInterfaceList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusInterfaceList</span></h5>
 <div class="sect5">
-<h6 id="_short_description_24">Short description</h6>
+<h6 id="_short_description_45">Short description</h6>
 <div class="paragraph">
-<p>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Notify list of available interfaces.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1823,33 +2829,33 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_22">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_43">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelAdminActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusInterfaceList</span>(list)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusInterfaceList</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusInterfaceList</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelMaintenanceActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelMaintenanceActive</span></h5>
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusLoadParameterOnReboot"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusLoadParameterOnReboot</span></h5>
 <div class="sect5">
-<h6 id="_short_description_25">Short description</h6>
+<h6 id="_short_description_46">Short description</h6>
 <div class="paragraph">
-<p>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Notify status if parameters should be loaded on app/device boot up.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1880,24 +2886,24 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_23">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_44">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelMaintenanceActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusLoadParameterOnReboot</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusLoadParameterOnReboot</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelOperatorActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelOperatorActive</span></h5>
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusModuleIsActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusModuleIsActive</span></h5>
 <div class="sect5">
-<h6 id="_short_description_26">Short description</h6>
+<h6 id="_short_description_47">Short description</h6>
 <div class="paragraph">
-<p>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Notify if module can be used on device.</p>
 </div>
 </div>
 <div class="sect5">
@@ -1928,28 +2934,76 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_24">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_45">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelOperatorActive</span>(status)
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusModuleIsActive</span>(status)
   <span class="comment">-- Do something</span>
 <span class="keyword">end</span>
 
-Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusModuleIsActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelServiceActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelServiceActive</span></h5>
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusModuleVersion"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusModuleVersion</span></h5>
 <div class="sect5">
-<h6 id="_short_description_27">Short description</h6>
+<h6 id="_short_description_48">Short description</h6>
 <div class="paragraph">
-<p>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+<p>Notify version of module.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_callback_arguments_13">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_46">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusModuleVersion</span>(version)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusModuleVersion</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusModuleVersion</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNamespaceExists"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceExists</span></h5>
+<div class="sect5">
+<h6 id="_short_description_49">Short description</h6>
+<div class="paragraph">
+<p>Notfiy if there is a namepsace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_14">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1976,7 +3030,1114 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_25">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_47">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNamespaceExists</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNamespaceExists</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNamespaceExists</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNamespaceIndex"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceIndex</span></h5>
+<div class="sect5">
+<h6 id="_short_description_50">Short description</h6>
+<div class="paragraph">
+<p>Notify index of namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_15">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">index</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Index</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_48">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNamespaceIndex</span>(index)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNamespaceIndex</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNamespaceIndex</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNamespaceList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceList</span></h5>
+<div class="sect5">
+<h6 id="_short_description_51">Short description</h6>
+<div class="paragraph">
+<p>Notify list of available namespaces.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_16">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of namespaces.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_49">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNamespaceList</span>(list)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNamespaceList</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNamespaceList</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNamespaceURL"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNamespaceURL</span></h5>
+<div class="sect5">
+<h6 id="_short_description_52">Short description</h6>
+<div class="paragraph">
+<p>Notify URL of namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_17">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_50">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNamespaceURL</span>(url)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNamespaceURL</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNamespaceURL</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeAccessLevel"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeAccessLevel</span></h5>
+<div class="sect5">
+<h6 id="_short_description_53">Short description</h6>
+<div class="paragraph">
+<p>Notify access level of node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_18">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">level</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Access level.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_51">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeAccessLevel</span>(level)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeAccessLevel</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeAccessLevel</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeClass"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeClass</span></h5>
+<div class="sect5">
+<h6 id="_short_description_54">Short description</h6>
+<div class="paragraph">
+<p>Notify class of node to create.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_19">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Class of node.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_52">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeClass</span>(class)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeClass</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeClass</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeDataType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeDataType</span></h5>
+<div class="sect5">
+<h6 id="_short_description_55">Short description</h6>
+<div class="paragraph">
+<p>Notify data type of node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_20">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Standard node type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_53">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeDataType</span>(<span class="predefined">type</span>)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeDataType</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeDataType</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeHasReference"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeHasReference</span></h5>
+<div class="sect5">
+<h6 id="_short_description_56">Short description</h6>
+<div class="paragraph">
+<p>Notify status if node has a reference.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_21">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_54">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeHasReference</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeHasReference</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeHasReference</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeID"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeID</span></h5>
+<div class="sect5">
+<h6 id="_short_description_57">Short description</h6>
+<div class="paragraph">
+<p>Notify ID of node to create.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_22">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node ID.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_55">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeID</span>(id)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeID</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeID</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeIDType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeIDType</span></h5>
+<div class="sect5">
+<h6 id="_short_description_58">Short description</h6>
+<div class="paragraph">
+<p>Notify type of node ID to create.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_23">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node ID type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_56">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeIDType</span>(<span class="predefined">type</span>)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeIDType</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeIDType</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeReference"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeReference</span></h5>
+<div class="sect5">
+<h6 id="_short_description_59">Short description</h6>
+<div class="paragraph">
+<p>Notify node reference.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_24">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference node.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_57">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeReference</span>(node)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeReference</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeReference</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeReferenceList"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeReferenceList</span></h5>
+<div class="sect5">
+<h6 id="_short_description_60">Short description</h6>
+<div class="paragraph">
+<p>Notify list of available node references.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_25">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of references.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_58">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeReferenceList</span>(list)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeReferenceList</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeReferenceList</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeReferenceType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeReferenceType</span></h5>
+<div class="sect5">
+<h6 id="_short_description_61">Short description</h6>
+<div class="paragraph">
+<p>Notify node reference type.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_26">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">refType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_59">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeReferenceType</span>(refType)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeReferenceType</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeReferenceType</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusNodeType"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusNodeType</span></h5>
+<div class="sect5">
+<h6 id="_short_description_62">Short description</h6>
+<div class="paragraph">
+<p>Notify type of node.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_27">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nodeType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of node (ROOT or VARIABLE)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_60">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusNodeType</span>(nodeType)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusNodeType</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusNodeType</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusPort"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusPort</span></h5>
+<div class="sect5">
+<h6 id="_short_description_63">Short description</h6>
+<div class="paragraph">
+<p>Notify port of OPC UA server.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_28">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_61">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusPort</span>(port)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusPort</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusPort</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusSelectedNamespace"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusSelectedNamespace</span></h5>
+<div class="sect5">
+<h6 id="_short_description_64">Short description</h6>
+<div class="paragraph">
+<p>Notify currently selected namespace.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_29">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">namespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Namespace</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_62">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusSelectedNamespace</span>(namespace)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusSelectedNamespace</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusSelectedNamespace</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusServerActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusServerActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_65">Short description</h6>
+<div class="paragraph">
+<p>Notify status if server should be active.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_30">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_63">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusServerActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusServerActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusServerActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewStatusServerIsCurrentlyActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewStatusServerIsCurrentlyActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_66">Short description</h6>
+<div class="paragraph">
+<p>Notify status if server is currently active.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_31">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_64">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewStatusServerIsCurrentlyActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewStatusServerIsCurrentlyActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewStatusServerIsCurrentlyActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnNewValueUpdate_NAMESPACE_NODEID"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnNewValueUpdate_NAMESPACE_NODEID</span></h5>
+<div class="sect5">
+<h6 id="_short_description_67">Short description</h6>
+<div class="paragraph">
+<p>Example for dynamically created event to notify updates of nodes via client.<br>
+"NAMESPACE" and "NODEID" will be replaced by related namespace and node ID (e.g. 'CSK_OPCUAServer.OnNewValueUpdate_NamespaceID2_NodeNo2').<br>
+This event will be created during runtime. So for users of this event, it is necessary to check first if this event is already available to be able to register to it.<br>
+INFO: As this event will be created dynamically, there is no auto completion within SICK AppStudio available for such an event.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_32">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUTO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Updated value.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_65">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewValueUpdate_NAMESPACE_NODEID</span>(value)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnNewValueUpdate_NAMESPACE_NODEID</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnNewValueUpdate_NAMESPACE_NODEID</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnPersistentDataModuleAvailable"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnPersistentDataModuleAvailable</span></h5>
+<div class="sect5">
+<h6 id="_short_description_68">Short description</h6>
+<div class="paragraph">
+<p>Notify status if features of CSK_PersistendData module are available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_33">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_66">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnPersistentDataModuleAvailable</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnPersistentDataModuleAvailable</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelAdminActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelAdminActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_69">Short description</h6>
+<div class="paragraph">
+<p>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_34">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_67">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelAdminActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelAdminActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelMaintenanceActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelMaintenanceActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_70">Short description</h6>
+<div class="paragraph">
+<p>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_35">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_68">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelMaintenanceActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelMaintenanceActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelOperatorActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelOperatorActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_71">Short description</h6>
+<div class="paragraph">
+<p>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_36">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_69">Sample (auto-generated)</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelOperatorActive</span>(status)
+  <span class="comment">-- Do something</span>
+<span class="keyword">end</span>
+
+Script.register(<span class="string"><span class="delimiter">&quot;</span><span class="content">CSK_OPCUAServer.OnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">handleOnUserLevelOperatorActive</span><span class="delimiter">&quot;</span></span>)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="API:Event:CSK_OPCUAServer.OnUserLevelServiceActive"><span class="breadcrumb">CSK_OPCUAServer.</span><span class="api-event">OnUserLevelServiceActive</span></h5>
+<div class="sect5">
+<h6 id="_short_description_72">Short description</h6>
+<div class="paragraph">
+<p>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_callback_arguments_37">Callback arguments</h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Multiplicity</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Status</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect5">
+<h6 id="_sample_auto_generated_70">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnUserLevelServiceActive</span>(status)
@@ -1993,7 +4154,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect2">
 <h3 id="API:Crown:OPCUAServer_FC"><span class="api-crown">OPCUAServer_FC</span></h3>
 <div class="sect3">
-<h4 id="_short_description_28">Short description</h4>
+<h4 id="_short_description_73">Short description</h4>
 <div class="paragraph">
 <p>Crown to provide CSK_FlowConfig relevant features.</p>
 </div>
@@ -2006,7 +4167,7 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect2">
 <h3 id="API:Crown:OPCUAServer_FC.Consumer"><span class="api-crown">OPCUAServer_FC.Consumer</span></h3>
 <div class="sect3">
-<h4 id="_short_description_29">Short description</h4>
+<h4 id="_short_description_74">Short description</h4>
 <div class="paragraph">
 <p>Set something e.g. to process.</p>
 </div>
@@ -2029,13 +4190,13 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 <div class="sect4">
 <h5 id="API:Function:OPCUAServer_FC.Consumer.consume"><span class="breadcrumb">OPCUAServer_FC.Consumer.</span><span class="api-function">consume()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_30">Short description</h6>
+<h6 id="_short_description_75">Short description</h6>
 <div class="paragraph">
 <p>E.g. set source event of incoming data to process.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_6">Parameters</h6>
+<h6 id="_parameters_23">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2072,7 +4233,7 @@ Parameter:
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_26">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_71">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">OPCUAServer_FC.Consumer.consume(handle, source)</code></pre>
@@ -2083,13 +4244,13 @@ Parameter:
 <div class="sect4">
 <h5 id="API:Function:OPCUAServer_FC.Consumer.create"><span class="breadcrumb">OPCUAServer_FC.Consumer.</span><span class="api-function">create()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_31">Short description</h6>
+<h6 id="_short_description_76">Short description</h6>
 <div class="paragraph">
 <p>Internally used CSK_FlowConfig create function.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_7">Parameters</h6>
+<h6 id="_parameters_24">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2144,7 +4305,7 @@ Parameter:
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_27">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_72">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">handle = OPCUAServer_FC.Consumer.create(mode)</code></pre>
@@ -2157,7 +4318,7 @@ Parameter:
 <div class="sect2">
 <h3 id="API:Crown:OPCUAServer_FC.Process"><span class="api-crown">OPCUAServer_FC.Process</span></h3>
 <div class="sect3">
-<h4 id="_short_description_32">Short description</h4>
+<h4 id="_short_description_77">Short description</h4>
 <div class="paragraph">
 <p>Set source event of incoming data and provide result event.</p>
 </div>
@@ -2180,13 +4341,13 @@ Parameter:
 <div class="sect4">
 <h5 id="API:Function:OPCUAServer_FC.Process.create"><span class="breadcrumb">OPCUAServer_FC.Process.</span><span class="api-function">create()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_33">Short description</h6>
+<h6 id="_short_description_78">Short description</h6>
 <div class="paragraph">
 <p>Internally used CSK_FlowConfig create function.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_8">Parameters</h6>
+<h6 id="_parameters_25">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2241,7 +4402,7 @@ Parameter:
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_28">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_73">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">handle = OPCUAServer_FC.Process.create(Mode)</code></pre>
@@ -2252,13 +4413,13 @@ Parameter:
 <div class="sect4">
 <h5 id="API:Function:OPCUAServer_FC.Process.process"><span class="breadcrumb">OPCUAServer_FC.Process.</span><span class="api-function">process()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_34">Short description</h6>
+<h6 id="_short_description_79">Short description</h6>
 <div class="paragraph">
 <p>Set source event of incoming data and provide result event.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_9">Parameters</h6>
+<h6 id="_parameters_26">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2326,7 +4487,7 @@ Parameter:
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_29">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_74">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">OnNewResult = OPCUAServer_FC.Process.process(handle, source)</code></pre>
@@ -2339,7 +4500,7 @@ Parameter:
 <div class="sect2">
 <h3 id="API:Crown:OPCUAServer_FC.Provider"><span class="api-crown">OPCUAServer_FC.Provider</span></h3>
 <div class="sect3">
-<h4 id="_short_description_35">Short description</h4>
+<h4 id="_short_description_80">Short description</h4>
 <div class="paragraph">
 <p>Provide e.g. result via an event like 'CSK_OPCUAServer.OnNewResult[InstanceNUM]'.</p>
 </div>
@@ -2365,7 +4526,7 @@ Parameter:
 <div class="sect4">
 <h5 id="API:Function:OPCUAServer_FC.Provider.create"><span class="breadcrumb">OPCUAServer_FC.Provider.</span><span class="api-function">create()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_36">Short description</h6>
+<h6 id="_short_description_81">Short description</h6>
 <div class="paragraph">
 <p>Internally used CSK_FlowConfig create function.</p>
 </div>
@@ -2398,7 +4559,7 @@ Parameter:
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_30">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_75">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">handle = OPCUAServer_FC.Provider.create()</code></pre>
@@ -2409,13 +4570,13 @@ Parameter:
 <div class="sect4">
 <h5 id="API:Function:OPCUAServer_FC.Provider.register"><span class="breadcrumb">OPCUAServer_FC.Provider.</span><span class="api-function">register()</span></h5>
 <div class="sect5">
-<h6 id="_short_description_37">Short description</h6>
+<h6 id="_short_description_82">Short description</h6>
 <div class="paragraph">
 <p>Internally used CSK_FlowConfig register function.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_parameters_10">Parameters</h6>
+<h6 id="_parameters_27">Parameters</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2481,7 +4642,7 @@ Parameter:
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_31">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_76">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua">success = OPCUAServer_FC.Provider.register(handle, eventname, callback)</code></pre>
@@ -2495,13 +4656,13 @@ Parameter:
 <div class="sect4">
 <h5 id="API:Event:OPCUAServer_FC.Provider.OnNewResult"><span class="breadcrumb">OPCUAServer_FC.Provider.</span><span class="api-event">OnNewResult</span></h5>
 <div class="sect5">
-<h6 id="_short_description_38">Short description</h6>
+<h6 id="_short_description_83">Short description</h6>
 <div class="paragraph">
 <p>Provide result via 'CSK_OPCUAServer.OnNewResult[InstanceName]' event.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_callback_arguments_14">Callback arguments</h6>
+<h6 id="_callback_arguments_38">Callback arguments</h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2538,7 +4699,7 @@ Parameter:
 </table>
 </div>
 <div class="sect5">
-<h6 id="_sample_auto_generated_32">Sample (auto-generated)</h6>
+<h6 id="_sample_auto_generated_77">Sample (auto-generated)</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="lua"><span class="keyword">function</span> <span class="function">handleOnNewResult</span>(handle, OnNewResult)
@@ -2609,8 +4770,8 @@ Script.register(<span class="string"><span class="delimiter">&quot;</span><span 
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.1.0<br>
-Last updated 2025-02-20 15:37:28 +0100
+Version 0.2.0<br>
+Last updated 2025-03-10 15:20:15 +0100
 </div>
 </div>
 <script type="text/javascript">
